@@ -1,0 +1,135 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprite/crypt-room-1.png" type="Texture" id=2]
+[ext_resource path="res://sprite/torch-3.png" type="Texture" id=3]
+[ext_resource path="res://sprite/torch-4.png" type="Texture" id=4]
+[ext_resource path="res://sprite/torch-2.png" type="Texture" id=5]
+[ext_resource path="res://sprite/torch-1.png" type="Texture" id=6]
+[ext_resource path="res://sprite/home-room-1.png" type="Texture" id=7]
+[ext_resource path="res://sprite/monitor-1.png" type="Texture" id=8]
+[ext_resource path="res://sprite/monitor-2.png" type="Texture" id=9]
+[ext_resource path="res://sprite/monitor-3.png" type="Texture" id=10]
+[ext_resource path="res://sprite/migan-1.png" type="Texture" id=11]
+[ext_resource path="res://sprite/migan-2.png" type="Texture" id=12]
+[ext_resource path="res://sprite/migan-3.png" type="Texture" id=13]
+[ext_resource path="res://sprite/monitor-4.png" type="Texture" id=14]
+[ext_resource path="res://sprite/room-2.png" type="Texture" id=15]
+[ext_resource path="res://sprite/mebel.png" type="Texture" id=16]
+[ext_resource path="res://sprite/streat.png" type="Texture" id=17]
+[ext_resource path="res://sprite/light.png" type="Texture" id=18]
+[ext_resource path="res://sprite/zabor.png" type="Texture" id=19]
+[ext_resource path="res://sprite/vetka.png" type="Texture" id=20]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.5
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="crypt-room-1" type="Sprite" parent="."]
+position = Vector2( 1023.45, 175.947 )
+texture = ExtResource( 2 )
+
+[node name="streat" type="Sprite" parent="."]
+position = Vector2( 351.001, 882.996 )
+texture = ExtResource( 17 )
+
+[node name="home-room-1" type="Sprite" parent="."]
+position = Vector2( 2345.13, 133.626 )
+texture = ExtResource( 7 )
+
+[node name="room-2" type="Sprite" parent="."]
+position = Vector2( 451.317, 547.497 )
+texture = ExtResource( 15 )
+
+[node name="torch" type="AnimatedSprite" parent="."]
+position = Vector2( 255.915, 80.424 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="torch3" type="AnimatedSprite" parent="."]
+position = Vector2( 934.218, 81.9314 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="torch4" type="AnimatedSprite" parent="."]
+position = Vector2( 1314.07, 72.8873 )
+frames = SubResource( 1 )
+frame = 3
+playing = true
+
+[node name="torch5" type="AnimatedSprite" parent="."]
+position = Vector2( 1531.12, 75.902 )
+frames = SubResource( 1 )
+frame = 3
+playing = true
+
+[node name="torch6" type="AnimatedSprite" parent="."]
+position = Vector2( 1825.06, 69.8727 )
+frames = SubResource( 1 )
+frame = 3
+playing = true
+
+[node name="torch2" type="AnimatedSprite" parent="."]
+position = Vector2( 687.698, 84.0664 )
+frames = SubResource( 1 )
+frame = 3
+playing = true
+
+[node name="torch7" type="AnimatedSprite" parent="."]
+position = Vector2( 494.758, 79.5444 )
+frames = SubResource( 1 )
+frame = 3
+playing = true
+
+[node name="monitor" type="AnimatedSprite" parent="."]
+position = Vector2( 2069.01, 134.649 )
+frames = SubResource( 2 )
+frame = 3
+playing = true
+
+[node name="lamp" type="AnimatedSprite" parent="."]
+position = Vector2( 2560.13, 82.6165 )
+frames = SubResource( 3 )
+playing = true
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 596.453, 865.135 )
+texture = ExtResource( 18 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 128.876, 884.311 )
+
+[node name="mebel" type="Sprite" parent="."]
+position = Vector2( 383.774, 648.558 )
+scale = Vector2( 0.982447, 1 )
+texture = ExtResource( 16 )
+
+[node name="zabor" type="Sprite" parent="."]
+position = Vector2( 405.054, 983.927 )
+texture = ExtResource( 19 )
+
+[node name="vetka" type="Sprite" parent="."]
+position = Vector2( 45.8218, 824.326 )
+texture = ExtResource( 20 )
