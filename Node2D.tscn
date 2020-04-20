@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprite/crypt-room-1.png" type="Texture" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://sprite/light.png" type="Texture" id=18]
 [ext_resource path="res://sprite/zabor.png" type="Texture" id=19]
 [ext_resource path="res://sprite/vetka.png" type="Texture" id=20]
+[ext_resource path="res://sprite/dialog_trigger.png" type="Texture" id=21]
+[ext_resource path="res://Dialog_label.gd" type="Script" id=22]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -45,6 +47,12 @@ animations = [ {
 "speed": 8.0
 } ]
 
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 71.1954
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 56.5721
+
 [node name="Node2D" type="Node2D"]
 
 [node name="crypt-room-1" type="Sprite" parent="."]
@@ -66,47 +74,44 @@ texture = ExtResource( 15 )
 [node name="torch" type="AnimatedSprite" parent="."]
 position = Vector2( 255.915, 80.424 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="torch3" type="AnimatedSprite" parent="."]
 position = Vector2( 934.218, 81.9314 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="torch4" type="AnimatedSprite" parent="."]
 position = Vector2( 1314.07, 72.8873 )
 frames = SubResource( 1 )
-frame = 3
 playing = true
 
 [node name="torch5" type="AnimatedSprite" parent="."]
 position = Vector2( 1531.12, 75.902 )
 frames = SubResource( 1 )
-frame = 3
 playing = true
 
 [node name="torch6" type="AnimatedSprite" parent="."]
 position = Vector2( 1825.06, 69.8727 )
 frames = SubResource( 1 )
-frame = 3
 playing = true
 
 [node name="torch2" type="AnimatedSprite" parent="."]
 position = Vector2( 687.698, 84.0664 )
 frames = SubResource( 1 )
-frame = 3
 playing = true
 
 [node name="torch7" type="AnimatedSprite" parent="."]
 position = Vector2( 494.758, 79.5444 )
 frames = SubResource( 1 )
-frame = 3
 playing = true
 
 [node name="monitor" type="AnimatedSprite" parent="."]
 position = Vector2( 2069.01, 134.649 )
 frames = SubResource( 2 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="lamp" type="AnimatedSprite" parent="."]
@@ -121,6 +126,9 @@ texture = ExtResource( 18 )
 [node name="player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128.876, 884.311 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+shape = SubResource( 4 )
+
 [node name="mebel" type="Sprite" parent="."]
 position = Vector2( 383.774, 648.558 )
 scale = Vector2( 0.982447, 1 )
@@ -133,3 +141,28 @@ texture = ExtResource( 19 )
 [node name="vetka" type="Sprite" parent="."]
 position = Vector2( 45.8218, 824.326 )
 texture = ExtResource( 20 )
+
+[node name="Dialog" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="Sprite" type="Sprite" parent="Dialog"]
+position = Vector2( 408.149, 919.07 )
+scale = Vector2( 0.541199, 0.541199 )
+texture = ExtResource( 21 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog"]
+position = Vector2( 411.365, 920.787 )
+shape = SubResource( 5 )
+
+[node name="Dialog_label" type="Label" parent="."]
+margin_left = 321.306
+margin_top = 849.434
+margin_right = 358.306
+margin_bottom = 863.434
+text = "sadad"
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="body_entered" from="Dialog" to="player" method="_on_Dialog_body_entered"]
+[connection signal="body_exited" from="Dialog" to="player" method="_on_Dialog_body_exited"]
