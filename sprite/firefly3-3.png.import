@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/white room.png-fa184a1b61f0545cd6cb5d8c501a75b0.stex"
+path="res://.import/firefly3-3.png-40f0b97b1f54cb649328c52f88381881.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/white room.png"
-dest_files=[ "res://.import/white room.png-fa184a1b61f0545cd6cb5d8c501a75b0.stex" ]
+source_file="res://sprite/firefly3-3.png"
+dest_files=[ "res://.import/firefly3-3.png-40f0b97b1f54cb649328c52f88381881.stex" ]
 
 [params]
 
