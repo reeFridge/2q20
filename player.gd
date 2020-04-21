@@ -1,44 +1,57 @@
 extends KinematicBody2D
-signal timer_end
 
+export var maxTop: NodePath
+export var maxBottom: NodePath
+export var maxLeft: NodePath
+export var maxRight: NodePath
 
-const speed = 150
+export var speed = 100
 
-var velocity = Vector2()
-
-var text = ["Hello ", "there!", " How'dy?"]
-
+var direction = Vector2()
 
 func _physics_process(delta):
+	var pressedX = false
+	var pressedY = false
 	if Input.is_action_pressed("ui_right"):
-		velocity.x = speed 
+		direction.x = 1
 		$AnimatedSprite.flip_h = false
-		$AnimatedSprite.play("walk")
-		
-	elif Input.is_action_pressed("ui_left"):
-		velocity.x = -speed
+		pressedX = true
+	if Input.is_action_pressed("ui_left"):
+		direction.x = -1
 		$AnimatedSprite.flip_h = true
+		pressedX = true
+	if Input.is_action_pressed("ui_up"):
+		direction.y = -1
+		pressedY = true
+	if Input.is_action_pressed("ui_down"):
+		direction.y = 1
+		pressedY = true
+
+	if !pressedX:
+		direction.x = 0
+	if !pressedY:
+		direction.y = 0
+
+	if pressedX || pressedY:
 		$AnimatedSprite.play("walk")
 	else:
-		velocity.x = 0
 		$AnimatedSprite.play("stand")
-		
+	
+	# speed is constant whenever move is either straight by axis or by diagonal
+	var velocity = direction.normalized() * speed
 	move_and_slide(velocity)
 	
-
-
-func _on_Dialog_body_entered(body):
-	var lab = get_node("/root/Node2D/Dialog_label")
-	for i in range(0,text.size()):
-		var t = Timer.new()
-		t.set_wait_time(3)
-		t.set_one_shot(true)
-		self.add_child(t)
-		t.start()
-		yield(t, "timeout")
-		lab.set_text(text[i])
-		t.queue_free()
+	var maxTopY = get_node(maxTop).global_position.y;
+	var maxBottomY = get_node(maxBottom).global_position.y
+	var maxRightX = get_node(maxRight).global_position.x
+	var maxLeftX = get_node(maxLeft).global_position.x
 	
-
-
-
+	if (global_position.y <= maxTopY):
+		global_position.y = maxTopY + 1
+	if (global_position.y >= maxBottomY):
+		global_position.y = maxBottomY - 1
+	if (global_position.x <= maxLeftX):
+		global_position.x = maxLeftX + 1
+	if (global_position.x >= maxRightX):
+		global_position.x = maxRightX - 1
+	
