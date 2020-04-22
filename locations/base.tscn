@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/scene.gd" type="Script" id=3]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="max_top" type="Position2D" parent="."]
+
+[node name="max_bottom" type="Position2D" parent="."]
+
+[node name="max_right" type="Position2D" parent="."]
+
+[node name="max_left" type="Position2D" parent="."]
+
+[node name="spawn" type="Position2D" parent="."]
+
+[node name="cam" type="Camera2D" parent="."]

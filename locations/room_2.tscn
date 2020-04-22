@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://items/item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/room-2.png" type="Texture" id=3]
+[ext_resource path="res://locations/base.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 124, 12 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 40, 70 )
+
+[node name="Node2D" instance=ExtResource( 4 )]
+
+[node name="max_top" parent="." index="0"]
+position = Vector2( 0, 24 )
+
+[node name="max_bottom" parent="." index="1"]
+position = Vector2( 0, 160 )
+
+[node name="max_right" parent="." index="2"]
+position = Vector2( 430, 0 )
+
+[node name="max_left" parent="." index="3"]
+position = Vector2( -374, 0 )
+
+[node name="spawn" parent="." index="4"]
+position = Vector2( 394, 24 )
+
+[node name="cam" parent="." index="5"]
+limit_left = -420
+limit_right = 450
+limit_bottom = 166
+
+[node name="bg" type="Sprite" parent="." index="6"]
+texture = ExtResource( 3 )
+
+[node name="sofa" type="StaticBody2D" parent="." index="7"]
+position = Vector2( 96, 18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sofa" index="0"]
+shape = SubResource( 1 )
+
+[node name="room_1_door" parent="." index="8" instance=ExtResource( 1 )]
+position = Vector2( 392, 10 )
+text = "my room"
+distance_to_activate = 40
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="room_1_door" index="1"]
+position = Vector2( 0, -70 )
+shape = SubResource( 2 )
+
+[node name="trigger_handler" type="Node" parent="room_1_door" index="2"]
+script = ExtResource( 2 )
+[connection signal="triggered" from="room_1_door" to="room_1_door/trigger_handler" method="_on_triggered"]
