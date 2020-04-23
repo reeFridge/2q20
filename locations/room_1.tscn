@@ -56,7 +56,7 @@ limit_bottom = 166
 [node name="Door" parent="." instance=ExtResource( 2 )]
 position = Vector2( -88, 40 )
 text = "main room"
-distance_to_activate = 40
+distance_to_activate = 60
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2( 0, -69 )

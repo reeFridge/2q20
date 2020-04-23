@@ -1,6 +1,7 @@
 extends Node2D
 
 var player = preload("res://player/player.tscn").instance()
+export var fade = false
 
 func _ready():
 	add_child(player)

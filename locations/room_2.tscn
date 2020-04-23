@@ -12,6 +12,7 @@ extents = Vector2( 124, 12 )
 extents = Vector2( 40, 70 )
 
 [node name="Node2D" instance=ExtResource( 4 )]
+fade = true
 
 [node name="max_top" parent="." index="0"]
 position = Vector2( 0, 24 )
@@ -45,12 +46,12 @@ shape = SubResource( 1 )
 [node name="room_1_door" parent="." index="8" instance=ExtResource( 1 )]
 position = Vector2( 392, 10 )
 text = "my room"
-distance_to_activate = 40
+distance_to_activate = 60
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="room_1_door" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="room_1_door" index="0"]
 position = Vector2( 0, -70 )
 shape = SubResource( 2 )
 
-[node name="trigger_handler" type="Node" parent="room_1_door" index="2"]
+[node name="trigger_handler" type="Node" parent="room_1_door" index="1"]
 script = ExtResource( 2 )
 [connection signal="triggered" from="room_1_door" to="room_1_door/trigger_handler" method="_on_triggered"]
