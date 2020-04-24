@@ -5,7 +5,7 @@ export var maxBottom: NodePath
 export var maxLeft: NodePath
 export var maxRight: NodePath
 
-export var speed = 100
+export var speed = 120
 
 var direction = Vector2()
 

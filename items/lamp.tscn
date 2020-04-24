@@ -4,9 +4,7 @@
 [ext_resource path="res://assets/sprites/migan-2.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/migan-3.png" type="Texture" id=3]
 
-
-
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
@@ -15,5 +13,6 @@ animations = [ {
 } ]
 
 [node name="lamp" type="AnimatedSprite"]
-frames = SubResource( 3 )
+frames = SubResource( 1 )
+frame = 2
 playing = true

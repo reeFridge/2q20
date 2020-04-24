@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://shaders/transition.shader" type="Shader" id=2]
 [ext_resource path="res://scripts/ui.gd" type="Script" id=3]
+[ext_resource path="res://assets/fonts/m6x11.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fg_fade"
@@ -19,6 +20,14 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.0509804, 0.0509804, 0.0509804, 0.784314 )
+border_width_bottom = 2
+border_color = Color( 0.592157, 0.388235, 0.168627, 1 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 4 )
+
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
 shader_param/opacity = 0.9
@@ -32,7 +41,33 @@ anims/fg_fade = SubResource( 1 )
 [node name="ui" type="CanvasLayer" parent="."]
 script = ExtResource( 3 )
 
+[node name="text_panel" type="Panel" parent="ui"]
+visible = false
+anchor_left = 0.022
+anchor_top = 0.032
+anchor_right = 0.978
+anchor_bottom = 0.215
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text" type="RichTextLabel" parent="ui/text_panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+custom_fonts/normal_font = SubResource( 3 )
+text = "Some thoughts"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="fg" type="ColorRect" parent="ui"]
+visible = false
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0

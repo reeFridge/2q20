@@ -21,6 +21,8 @@ func get_player():
 	return null
 
 func set_scene(scene):
+	$ui.text_timeout()
+
 	if current_scene == null:
 		next_scene = scene
 		next_transition_phase(TransitionPhase.FADE_IN)

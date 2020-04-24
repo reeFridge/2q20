@@ -1,11 +1,13 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://items/lamp.tscn" type="PackedScene" id=1]
+[ext_resource path="res://items/lamp_togglable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/scene.gd" type="Script" id=3]
 [ext_resource path="res://assets/sprites/home-room-1.png" type="Texture" id=4]
 [ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=5]
 [ext_resource path="res://items/monitor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/toy_actions_handler.gd" type="Script" id=7]
+[ext_resource path="res://scripts/pants_actions_handler.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 70 )
@@ -90,16 +92,24 @@ shape = SubResource( 4 )
 [node name="toy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 114, -27 )
 text = "toy bear"
+distance_to_activate = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="toy"]
 shape = SubResource( 5 )
 
+[node name="trigger_handler" type="Node" parent="toy"]
+script = ExtResource( 7 )
+
 [node name="pants" parent="." instance=ExtResource( 2 )]
-position = Vector2( 148, 52 )
+position = Vector2( 149, 52 )
 text = "my pants"
+distance_to_activate = 60
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pants"]
 shape = SubResource( 6 )
+
+[node name="actions_handler" type="Node" parent="pants"]
+script = ExtResource( 8 )
 
 [node name="pills" parent="." instance=ExtResource( 2 )]
 position = Vector2( 288, 31 )
@@ -153,8 +163,11 @@ position = Vector2( 0, 104 )
 
 [node name="lamp" parent="." instance=ExtResource( 1 )]
 position = Vector2( 216, -52 )
+distance_to_activate = 150
 
 [node name="monitor" parent="." instance=ExtResource( 6 )]
 position = Vector2( -276, 2 )
 frame = 3
 [connection signal="triggered" from="Door" to="Door/trigger_handler" method="_on_triggered"]
+[connection signal="triggered" from="toy" to="toy/trigger_handler" method="_on_toy_triggered"]
+[connection signal="triggered" from="pants" to="pants/actions_handler" method="_on_pants_triggered"]

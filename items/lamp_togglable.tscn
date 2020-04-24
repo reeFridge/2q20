@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://items/lamp.tscn" type="PackedScene" id=1]
+[ext_resource path="res://items/item.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/lamp_action_handler.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 20 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6, 36 )
+
+[node name="Area2D" instance=ExtResource( 2 )]
+text = "color lights"
+distance_to_activate = 100
+
+[node name="lamp" parent="." index="0" instance=ExtResource( 1 )]
+frame = 1
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2( -76, -8 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="2"]
+position = Vector2( 76, 0 )
+shape = SubResource( 2 )
+[connection signal="triggered" from="." to="lamp" method="_on_Area2D_triggered"]
