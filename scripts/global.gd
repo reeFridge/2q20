@@ -21,7 +21,7 @@ func get_player():
 func show_text(text):
 	main.get_node("ui").show_text(text, 5)
 	
-func change_scene(scene_index):
+func change_scene(scene_index, spawn_name = "spawn"):
 	print("change scene -> ", scene_index)
 	if main:
-		main.set_scene(scenes[scene_index])
+		main.set_scene(scenes[scene_index], spawn_name)

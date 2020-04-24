@@ -10,6 +10,8 @@ func show_fading_rect():
 	
 func show_text(text, timeout):
 	remove_text_timer()
+	get_parent().get_node("AnimationPlayer").stop()
+	get_parent().get_node("AnimationPlayer").play("typing")
 	$text_panel.visible = true
 	$text_panel/text.text = text
 	var timer = Timer.new()

@@ -20,13 +20,14 @@ func get_player():
 		
 	return null
 
-func set_scene(scene):
+func set_scene(scene, spawn_name):
+	scene.spawn_name = spawn_name
 	$ui.text_timeout()
 
 	if current_scene == null:
 		next_scene = scene
 		next_transition_phase(TransitionPhase.FADE_IN)
-		pass
+		return
 
 	if scene.fade:
 		next_scene = scene
@@ -42,7 +43,9 @@ func perform_transition():
 	current_scene = next_scene
 	next_scene = null
 	add_child(current_scene)
-	
+	if current_scene.ready:
+		current_scene.enter()
+
 func next_transition_phase(current_phase = scene_transition_phase):
 	match current_phase:
 		TransitionPhase.NONE:
