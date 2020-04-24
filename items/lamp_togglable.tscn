@@ -15,7 +15,7 @@ text = "color lights"
 distance_to_activate = 100
 
 [node name="lamp" parent="." index="0" instance=ExtResource( 1 )]
-frame = 1
+frame = 0
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]

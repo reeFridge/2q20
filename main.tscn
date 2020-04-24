@@ -44,9 +44,9 @@ script = ExtResource( 3 )
 [node name="text_panel" type="Panel" parent="ui"]
 visible = false
 anchor_left = 0.022
-anchor_top = 0.032
+anchor_top = 0.785
 anchor_right = 0.978
-anchor_bottom = 0.215
+anchor_bottom = 0.96
 custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
