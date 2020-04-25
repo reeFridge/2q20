@@ -21,6 +21,7 @@ func get_player():
 	return null
 	
 func glitch():
+	$audio.play()
 	var variant = rand_range(0.0, 1.0)
 	print(variant)
 	if variant > 0.5:
