@@ -19,8 +19,18 @@ func get_player():
 		return current_scene.get_player()
 		
 	return null
+	
+func glitch():
+	var variant = rand_range(0.0, 1.0)
+	print(variant)
+	if variant > 0.5:
+		$screen_effects.play("glitch")
+	else:
+		$screen_effects.play_backwards("glitch")
 
 func set_scene(scene, spawn_name):
+	glitch()
+
 	scene.spawn_name = spawn_name
 	$ui.text_timeout()
 

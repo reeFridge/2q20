@@ -58,6 +58,7 @@ func _on_Area2D_mouse_entered():
 	label = preload("res://ui/item_label.tscn").instance()
 	label.text = text
 	add_child(label)
+	label.set_global_position(get_global_mouse_position() - Vector2(label.rect_size.x / 2, label.rect_size.y + 10))
 
 func _on_Area2D_mouse_exited():
 	remove_child(label)
