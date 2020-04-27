@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://shaders/transition.shader" type="Shader" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/sprites/white.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/displacement.jpeg" type="Texture" id=7]
 [ext_resource path="res://assets/sounds/glitch.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sprites/mental.png" type="Texture" id=9]
+[ext_resource path="res://ui/inventory.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 tracks/0/type = "value"
@@ -37,7 +39,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "glitch"
 length = 0.5
 step = 0.05
@@ -54,21 +56,21 @@ tracks/0/keys = {
 "values": [ 0.0, -0.5, 1.0, -3.0, 1.0, 0.0 ]
 }
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.0509804, 0.0509804, 0.0509804, 0.784314 )
 border_width_bottom = 2
 border_color = Color( 0.592157, 0.388235, 0.168627, 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 4 )
 
-[sub_resource type="ShaderMaterial" id=8]
+[sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 5 )
 shader_param/apply = true
-shader_param/amount = -3.0
+shader_param/amount = 0.0
 shader_param/offset_texture = ExtResource( 7 )
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 2 )
 shader_param/opacity = 0.0
 
@@ -85,18 +87,17 @@ anims/typing = SubResource( 2 )
 
 [node name="screen_effects" type="AnimationPlayer" parent="."]
 playback_speed = 2.0
-anims/glitch = SubResource( 7 )
+anims/glitch = SubResource( 3 )
 
 [node name="ui" type="CanvasLayer" parent="."]
 script = ExtResource( 3 )
 
 [node name="text_panel" type="Panel" parent="ui"]
-visible = false
 anchor_left = 0.022
 anchor_top = 0.785
 anchor_right = 0.978
 anchor_bottom = 0.96
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -108,15 +109,30 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
 text = "Some thoughts"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="inventory" parent="ui" instance=ExtResource( 10 )]
+
+[node name="mental" type="TextureProgress" parent="ui"]
+margin_left = 14.0
+margin_top = 15.0
+margin_right = 124.0
+margin_bottom = 40.0
+value = 50.0
+texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 9 )
+tint_under = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="post_processing" type="TextureRect" parent="ui"]
-material = SubResource( 8 )
+material = SubResource( 6 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -130,7 +146,7 @@ __meta__ = {
 
 [node name="fg" type="ColorRect" parent="ui"]
 visible = false
-material = SubResource( 6 )
+material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )

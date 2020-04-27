@@ -25,3 +25,6 @@ func change_scene(scene_index, spawn_name = "spawn"):
 	print("change scene -> ", scene_index)
 	if main:
 		main.set_scene(scenes[scene_index], spawn_name)
+		
+func take_item(item):
+	main.get_node("ui").get_node("inventory").add_item(item)

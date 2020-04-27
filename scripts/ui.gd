@@ -2,12 +2,20 @@ extends CanvasLayer
 
 var text_timer: Timer = null
 
+func _ready():
+	$mental.max_value = Stats.MAX_MENTAL
+	update_mental()
+	Stats.connect("update", self, "update_mental")
+
 func hide_fading_rect():
 	$fg.visible = false
 	
 func show_fading_rect():
 	$fg.visible = true
 	
+func update_mental():
+	$mental.value = Stats.mental
+
 func show_text(text, timeout):
 	remove_text_timer()
 	get_parent().get_node("AnimationPlayer").stop()

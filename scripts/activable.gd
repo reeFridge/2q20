@@ -3,13 +3,14 @@ signal triggered
 
 export var text = "unknown item"
 export var distance_to_activate = -1
+export(Texture) var inventory_texture
 var label: Label = null
 var menu = null
 
 func _process(delta):
 	if menu:
 		var current_distance = Global.get_player().global_position.distance_to(global_position)
-		if current_distance > distance_to_activate:
+		if not distance_to_activate < 0 and current_distance > distance_to_activate:
 			close_actions_menu()
 
 func _ready():
@@ -46,7 +47,8 @@ func show_actions_menu(actions):
 	menu = preload("res://ui/actions_menu.tscn").instance()
 	menu.init(actions)
 	add_child(menu)
-	menu.set_global_position(global_position)
+	var menu_rect_size = menu.get_rect().size
+	menu.set_global_position(global_position - menu_rect_size)
 
 func close_actions_menu():
 	if menu != null:

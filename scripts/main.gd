@@ -23,7 +23,6 @@ func get_player():
 func glitch():
 	$audio.play()
 	var variant = rand_range(0.0, 1.0)
-	print(variant)
 	if variant > 0.5:
 		$screen_effects.play("glitch")
 	else:

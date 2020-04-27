@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://items/lamp_togglable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://scripts/pants_actions_handler.gd" type="Script" id=8]
 [ext_resource path="res://assets/sprites/pants.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/pills.png" type="Texture" id=10]
+[ext_resource path="res://scripts/pills_actions.gd" type="Script" id=11]
+[ext_resource path="res://assets/sprites/pills2.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 70 )
@@ -106,6 +108,7 @@ script = ExtResource( 7 )
 position = Vector2( 149, 52 )
 text = "my pants"
 distance_to_activate = 60
+inventory_texture = ExtResource( 9 )
 
 [node name="pants" type="Sprite" parent="pants"]
 texture = ExtResource( 9 )
@@ -119,12 +122,17 @@ script = ExtResource( 8 )
 [node name="pills" parent="." instance=ExtResource( 2 )]
 position = Vector2( 284, 28 )
 text = "pills"
+distance_to_activate = 80
+inventory_texture = ExtResource( 12 )
 
 [node name="pills" type="Sprite" parent="pills"]
 texture = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pills"]
 shape = SubResource( 7 )
+
+[node name="actions_handler" type="Node" parent="pills"]
+script = ExtResource( 11 )
 
 [node name="BigSofa" type="StaticBody2D" parent="."]
 position = Vector2( 80, 52 )
@@ -178,7 +186,8 @@ distance_to_activate = 150
 
 [node name="monitor" parent="." instance=ExtResource( 6 )]
 position = Vector2( -276, 2 )
-frame = 1
+frame = 3
 [connection signal="triggered" from="Door" to="Door/trigger_handler" method="_on_triggered"]
 [connection signal="triggered" from="toy" to="toy/trigger_handler" method="_on_toy_triggered"]
 [connection signal="triggered" from="pants" to="pants/actions_handler" method="_on_pants_triggered"]
+[connection signal="triggered" from="pills" to="pills/actions_handler" method="_on_triggered"]
