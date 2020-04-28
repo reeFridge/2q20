@@ -1,9 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/room-2.png" type="Texture" id=3]
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sprites/mebel.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/time-2.png" type="Texture" id=6]
+[ext_resource path="res://assets/sounds/clock.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/sprites/time-3.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/time-1.png" type="Texture" id=9]
+[ext_resource path="res://scripts/knife_actions.gd" type="Script" id=10]
+[ext_resource path="res://assets/sprites/knife.png" type="Texture" id=11]
+[ext_resource path="res://scripts/reply.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 124, 12 )
@@ -11,7 +19,39 @@ extents = Vector2( 124, 12 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 40, 70 )
 
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 7.23375, 7.03482 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 6, 4, 184, 103 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 66.342, 25.8734 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 19.2392, 17.2489 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 5 )
+region = Rect2( 346, 23, 235, 79 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 116.762, 17.9124 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 6 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 39.7057, 69.9577 )
+
 [node name="Node2D" instance=ExtResource( 4 )]
+player_container = "container"
 fade = true
 
 [node name="max_top" parent="." index="0"]
@@ -37,13 +77,16 @@ limit_bottom = 166
 [node name="bg" type="Sprite" parent="." index="6"]
 texture = ExtResource( 3 )
 
-[node name="sofa" type="StaticBody2D" parent="." index="7"]
+[node name="from_street" type="Position2D" parent="." index="7"]
+position = Vector2( -272.666, 27.8637 )
+
+[node name="sofa" type="StaticBody2D" parent="." index="8"]
 position = Vector2( 96, 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sofa" index="0"]
 shape = SubResource( 1 )
 
-[node name="room_1_door" parent="." index="8" instance=ExtResource( 1 )]
+[node name="room_1_door" parent="." index="9" instance=ExtResource( 1 )]
 position = Vector2( 392, 10 )
 text = "my room"
 distance_to_activate = 50
@@ -55,4 +98,85 @@ shape = SubResource( 2 )
 [node name="trigger_handler" type="Node" parent="room_1_door" index="1"]
 script = ExtResource( 2 )
 scene_spawn = "spawn_door"
+
+[node name="street_door" parent="." index="10" instance=ExtResource( 1 )]
+position = Vector2( -272.747, 10 )
+text = "street"
+distance_to_activate = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="street_door" index="0"]
+position = Vector2( 0, -70 )
+shape = SubResource( 2 )
+
+[node name="trigger_handler" type="Node" parent="street_door" index="1"]
+script = ExtResource( 2 )
+scene_index = 2
+
+[node name="knife" parent="." index="11" instance=ExtResource( 1 )]
+position = Vector2( 286.412, 21.7423 )
+text = "knife"
+distance_to_activate = 50
+inventory_texture = ExtResource( 11 )
+
+[node name="knife" type="Sprite" parent="knife" index="0"]
+texture = ExtResource( 11 )
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="knife" index="1"]
+shape = SubResource( 9 )
+
+[node name="actions" type="Node" parent="knife" index="2"]
+script = ExtResource( 10 )
+
+[node name="container" type="YSort" parent="." index="12"]
+
+[node name="table" type="Sprite" parent="container" index="0"]
+position = Vector2( -230.487, 79.3432 )
+texture = SubResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="container/table" index="0"]
+position = Vector2( -23.8831, 14.5952 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="container/table/StaticBody2D" index="0"]
+shape = SubResource( 5 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="container/table" index="1"]
+position = Vector2( 69.6591, 13.2684 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="container/table/StaticBody2D2" index="0"]
+shape = SubResource( 7 )
+
+[node name="chair" type="Sprite" parent="container" index="1"]
+position = Vector2( 94.5891, 80.0067 )
+texture = SubResource( 4 )
+offset = Vector2( 0, -20 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="container/chair" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="container/chair/StaticBody2D" index="0"]
+shape = SubResource( 6 )
+
+[node name="clock" type="AnimatedSprite" parent="." index="13"]
+position = Vector2( 189.738, -106.147 )
+frames = SubResource( 8 )
+frame = 1
+playing = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="clock" index="0"]
+stream = ExtResource( 7 )
+autoplay = true
+max_distance = 400.0
+
+[node name="parents_room" parent="." index="14" instance=ExtResource( 1 )]
+position = Vector2( 293.056, -59.7569 )
+text = "parents room"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="parents_room" index="0"]
+shape = SubResource( 10 )
+
+[node name="actions" type="Node" parent="parents_room" index="1"]
+script = ExtResource( 12 )
 [connection signal="triggered" from="room_1_door" to="room_1_door/trigger_handler" method="_on_triggered"]
+[connection signal="triggered" from="street_door" to="street_door/trigger_handler" method="_on_triggered"]
+[connection signal="triggered" from="knife" to="knife/actions" method="_on_triggered"]
+[connection signal="triggered" from="parents_room" to="parents_room/actions" method="_on_parents_room_triggered"]

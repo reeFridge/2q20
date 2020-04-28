@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/park.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/park-wood.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/park-bench.png" type="Texture" id=4]
+[ext_resource path="res://locations/transition_area.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 87.5952, 8.22055 )
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 11.9448
+height = 53.4672
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 19.0258, 13.1325 )
+
+[node name="Node2D" instance=ExtResource( 1 )]
+player_container = "container"
+fade = true
+
+[node name="max_top" parent="." index="0"]
+position = Vector2( 0, 19.0953 )
+
+[node name="max_bottom" parent="." index="1"]
+position = Vector2( 0, 154.577 )
+
+[node name="max_right" parent="." index="2"]
+position = Vector2( 478.914, 0 )
+
+[node name="max_left" parent="." index="3"]
+position = Vector2( -479.259, 0 )
+
+[node name="spawn" parent="." index="4"]
+position = Vector2( -396.593, 129.01 )
+
+[node name="from_graveyard" type="Position2D" parent="." index="5"]
+position = Vector2( 392.539, 110.264 )
+
+[node name="cam" parent="." index="6"]
+limit_left = -450
+limit_top = -600
+limit_right = 450
+limit_bottom = 166
+
+[node name="park" type="Sprite" parent="." index="7"]
+texture = ExtResource( 2 )
+
+[node name="container" type="YSort" parent="." index="8"]
+
+[node name="park-bench" type="Sprite" parent="container" index="0"]
+position = Vector2( -94.3903, 49.1863 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, -16.1369 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="container/park-bench" index="0"]
+position = Vector2( -1.1376, 3.81926 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="container/park-bench/StaticBody2D" index="0"]
+position = Vector2( 0, 0.440125 )
+shape = SubResource( 2 )
+
+[node name="park-wood" type="Sprite" parent="container" index="1"]
+position = Vector2( -312.846, 94.5553 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -127.171 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="container/park-wood" index="0"]
+position = Vector2( -5.68799, -3.41281 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="container/park-wood/StaticBody2D" index="0"]
+position = Vector2( 0.568787, 3.98163 )
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
+position = Vector2( 214.465, 16.245 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+shape = SubResource( 1 )
+
+[node name="to_graveyard" parent="." index="10" instance=ExtResource( 5 )]
+position = Vector2( 466.471, 82.7356 )
+target_scene = 4
+
+[node name="to_street" parent="." index="11" instance=ExtResource( 5 )]
+position = Vector2( -468.212, 80.2308 )
+target_scene = 2
+target_spawn = "from_park"

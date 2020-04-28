@@ -3,7 +3,10 @@ signal activable_triggered(instance)
 
 var scenes = [
 	preload("res://locations/room_1.tscn").instance(),
-	preload("res://locations/room_2.tscn").instance()
+	preload("res://locations/room_2.tscn").instance(),
+	preload("res://locations/street.tscn").instance(),
+	preload("res://locations/park.tscn").instance(),
+	preload("res://locations/graveyard.tscn").instance()
 ]
 
 onready var main = get_tree().get_root().get_node("main")
@@ -13,7 +16,7 @@ func notify_every_activable(instance):
 
 func _ready():
 	print("global loaded")
-	change_scene(0)
+	change_scene(4)
 	
 func get_player():
 	return main.get_player()

@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/street.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/fence.png" type="Texture" id=3]
+[ext_resource path="res://items/item.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=5]
+[ext_resource path="res://locations/transition_area.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20.2859, 28.1309 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24.5465, 54.4005 )
+
+[node name="Node2D" instance=ExtResource( 1 )]
+fade = true
+
+[node name="max_top" parent="." index="0"]
+position = Vector2( 0, 21.8929 )
+
+[node name="max_bottom" parent="." index="1"]
+position = Vector2( 0, 89.5618 )
+
+[node name="max_right" parent="." index="2"]
+position = Vector2( 378.813, 0 )
+
+[node name="max_left" parent="." index="3"]
+position = Vector2( -335.691, 0 )
+
+[node name="spawn" parent="." index="4"]
+position = Vector2( -189.738, 33.171 )
+
+[node name="from_park" type="Position2D" parent="." index="5"]
+position = Vector2( 318.442, 52.4102 )
+
+[node name="cam" parent="." index="6"]
+limit_left = -349
+limit_top = -600
+limit_right = 349
+limit_bottom = 167
+
+[node name="street" type="Sprite" parent="." index="7"]
+texture = ExtResource( 2 )
+
+[node name="transition_area" parent="." index="8" instance=ExtResource( 6 )]
+position = Vector2( 367.535, 49.7565 )
+target_scene = 3
+
+[node name="fence" type="Sprite" parent="." index="9"]
+position = Vector2( -126.993, 75.3627 )
+z_index = 1
+texture = ExtResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="10"]
+position = Vector2( 71.6494, 0 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2( 9.95135, 0 )
+shape = SubResource( 1 )
+
+[node name="home_door" parent="." index="11" instance=ExtResource( 4 )]
+position = Vector2( -191.345, 13.6646 )
+text = "home"
+distance_to_activate = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="home_door" index="0"]
+position = Vector2( 0, -53.737 )
+shape = SubResource( 2 )
+
+[node name="trigger_handler" type="Node" parent="home_door" index="1"]
+script = ExtResource( 5 )
+scene_index = 1
+scene_spawn = "from_street"
+[connection signal="triggered" from="home_door" to="home_door/trigger_handler" method="_on_triggered"]

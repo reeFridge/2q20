@@ -49,6 +49,7 @@ func set_scene(scene, spawn_name):
 
 func perform_transition():
 	if current_scene != null:
+		current_scene.leave()
 		remove_child(current_scene)
 	current_scene = next_scene
 	next_scene = null

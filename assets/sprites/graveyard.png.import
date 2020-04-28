@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/firefly2-2.png-64dc3f6beec78ec981fa9246a05d0311.stex"
+path="res://.import/graveyard.png-f4bc87ff791bc099b0395677440f37cc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/firefly2-2.png"
-dest_files=[ "res://.import/firefly2-2.png-64dc3f6beec78ec981fa9246a05d0311.stex" ]
+source_file="res://assets/sprites/graveyard.png"
+dest_files=[ "res://.import/graveyard.png-f4bc87ff791bc099b0395677440f37cc.stex" ]
 
 [params]
 
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

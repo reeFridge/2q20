@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/firefly-3.png-3e2a875656bb4dfd0b7e376b81499373.stex"
+path="res://.import/time-1.png-078f91843d1d41980ec83643ae90c589.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/firefly-3.png"
-dest_files=[ "res://.import/firefly-3.png-3e2a875656bb4dfd0b7e376b81499373.stex" ]
+source_file="res://assets/sprites/time-1.png"
+dest_files=[ "res://.import/time-1.png-078f91843d1d41980ec83643ae90c589.stex" ]
 
 [params]
 
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

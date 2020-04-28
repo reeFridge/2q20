@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://items/lamp_togglable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://assets/sprites/pills.png" type="Texture" id=10]
 [ext_resource path="res://scripts/pills_actions.gd" type="Script" id=11]
 [ext_resource path="res://assets/sprites/pills2.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/pants-inventory.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/room-1-furniture.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 70 )
@@ -44,10 +46,11 @@ extents = Vector2( 16, 14 )
 extents = Vector2( 54, 10 )
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 52, 24 )
+extents = Vector2( 52, 15.4738 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
+player_container = "container"
 
 [node name="bg" type="Sprite" parent="."]
 texture = ExtResource( 4 )
@@ -108,7 +111,7 @@ script = ExtResource( 7 )
 position = Vector2( 149, 52 )
 text = "my pants"
 distance_to_activate = 60
-inventory_texture = ExtResource( 9 )
+inventory_texture = ExtResource( 13 )
 
 [node name="pants" type="Sprite" parent="pants"]
 texture = ExtResource( 9 )
@@ -155,13 +158,6 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bed"]
 shape = SubResource( 10 )
 
-[node name="Table" type="StaticBody2D" parent="."]
-position = Vector2( -248, 64 )
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Table"]
-shape = SubResource( 11 )
-
 [node name="max_top" type="Position2D" parent="."]
 position = Vector2( 0, 50 )
 
@@ -182,11 +178,28 @@ position = Vector2( -88, 58 )
 
 [node name="lamp" parent="." instance=ExtResource( 1 )]
 position = Vector2( 216, -52 )
+collision_layer = 8
+collision_mask = 0
 distance_to_activate = 150
 
-[node name="monitor" parent="." instance=ExtResource( 6 )]
-position = Vector2( -276, 2 )
-frame = 3
+[node name="container" type="YSort" parent="."]
+
+[node name="furniture" type="Sprite" parent="container"]
+position = Vector2( -236.04, 70.0354 )
+texture = ExtResource( 14 )
+offset = Vector2( 0, -17.565 )
+
+[node name="Table" type="StaticBody2D" parent="container/furniture"]
+position = Vector2( 0.228378, 12.9644 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="container/furniture/Table"]
+shape = SubResource( 11 )
+
+[node name="monitor" parent="container" instance=ExtResource( 6 )]
+position = Vector2( -273, 85 )
+frame = 2
+offset = Vector2( 0, -73.013 )
 [connection signal="triggered" from="Door" to="Door/trigger_handler" method="_on_triggered"]
 [connection signal="triggered" from="toy" to="toy/trigger_handler" method="_on_toy_triggered"]
 [connection signal="triggered" from="pants" to="pants/actions_handler" method="_on_pants_triggered"]

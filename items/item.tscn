@@ -3,8 +3,7 @@
 [ext_resource path="res://scripts/activable.gd" type="Script" id=2]
 
 [node name="Area2D" type="Area2D"]
-collision_layer = 8
-collision_mask = 0
+collision_layer = 2
 script = ExtResource( 2 )
 text = "door"
 [connection signal="input_event" from="." to="." method="_on_Area2D_input_event"]

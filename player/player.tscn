@@ -13,19 +13,19 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "walk",
-"speed": 7.4
-}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "stand",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walk",
+"speed": 7.4
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 23, 8 )
+extents = Vector2( 23, 6.25184 )
 
 [node name="player" type="KinematicBody2D"]
 collision_mask = 6
@@ -37,5 +37,5 @@ frames = SubResource( 1 )
 animation = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -2, -7.5 )
+position = Vector2( 1.08087, -6.17962 )
 shape = SubResource( 2 )
