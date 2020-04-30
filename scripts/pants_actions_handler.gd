@@ -7,7 +7,7 @@ func _on_pants_triggered():
 	})
 	
 func _on_pants_examine_action(action):
-	Global.show_text("oh... i guess it's deserve some explanation.")
+	Global.show_text("So, if they were laying on the floor, I have... the second.")
 	get_parent().close_actions_menu()
 
 func _on_take(action):

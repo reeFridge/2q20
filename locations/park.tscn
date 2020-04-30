@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/park.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/park-wood.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/park-bench.png" type="Texture" id=4]
 [ext_resource path="res://locations/transition_area.tscn" type="PackedScene" id=5]
+[ext_resource path="res://items/item.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/common_reply.gd" type="Script" id=7]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 87.5952, 8.22055 )
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -15,6 +17,18 @@ height = 53.4672
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 19.0258, 13.1325 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 87.8027, 27.6242 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 48.8704, 17.9191 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 227.898, 19.6622 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 26, 126.357 )
 
 [node name="Node2D" instance=ExtResource( 1 )]
 player_container = "container"
@@ -66,7 +80,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="container/park-bench/StaticBody2D" index="0"]
 position = Vector2( 0, 0.440125 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="park-wood" type="Sprite" parent="container" index="1"]
 position = Vector2( -312.846, 94.5553 )
@@ -97,3 +111,37 @@ target_scene = 4
 position = Vector2( -468.752, 82.223 )
 target_scene = 2
 target_spawn = "from_park"
+
+[node name="bench" parent="." index="12" instance=ExtResource( 6 )]
+position = Vector2( -96.06, 35.6996 )
+text = "bench"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bench" index="0"]
+shape = SubResource( 4 )
+
+[node name="Node" type="Node" parent="bench" index="1"]
+script = ExtResource( 7 )
+text = "Maybe someone left me a gift under the bench?"
+
+[node name="moon" parent="." index="13" instance=ExtResource( 6 )]
+position = Vector2( 200.343, -154.743 )
+text = "moon"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moon" index="0"]
+shape = SubResource( 5 )
+
+[node name="city" parent="." index="14" instance=ExtResource( 6 )]
+position = Vector2( 380.804, -79.6105 )
+text = "city"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="city" index="0"]
+position = Vector2( -155.24, -2.65367 )
+shape = SubResource( 6 )
+
+[node name="wood" parent="." index="15" instance=ExtResource( 6 )]
+position = Vector2( -317.869, -39.9767 )
+text = "wood"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wood" index="0"]
+shape = SubResource( 7 )
+[connection signal="triggered" from="bench" to="bench/Node" method="_on_triggered"]

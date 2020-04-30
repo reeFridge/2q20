@@ -4,7 +4,7 @@ signal update
 const MAX_MENTAL = 100.0
 
 var mental = MAX_MENTAL
-var interval = 15 * 1000
+var interval = 1 * 1000
 var last_update = 0
 
 func _process(delta):

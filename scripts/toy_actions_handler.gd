@@ -6,5 +6,5 @@ func _on_toy_triggered():
 	})
 	
 func _on_toy_examine_action(action):
-	Global.show_text("such a beautiful bear even without his head. looks cute.")
+	Global.show_text("He behaved so badly.")
 	get_parent().close_actions_menu()

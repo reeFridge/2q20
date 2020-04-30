@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://items/lamp_togglable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/sprites/home-room-1.png" type="Texture" id=4]
 [ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=5]
 [ext_resource path="res://items/monitor.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scripts/toy_actions_handler.gd" type="Script" id=7]
 [ext_resource path="res://scripts/pants_actions_handler.gd" type="Script" id=8]
 [ext_resource path="res://assets/sprites/pants.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/pills.png" type="Texture" id=10]
@@ -14,6 +13,7 @@
 [ext_resource path="res://assets/sprites/pills2.png" type="Texture" id=12]
 [ext_resource path="res://assets/sprites/pants-inventory.png" type="Texture" id=13]
 [ext_resource path="res://assets/sprites/room-1-furniture.png" type="Texture" id=14]
+[ext_resource path="res://scripts/common_reply.gd" type="Script" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 70 )
@@ -24,8 +24,26 @@ extents = Vector2( 14, 14 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 20, 28 )
 
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 23.6608, 22.7824 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 18.1179, 23.9415 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 8.79082, 7.34462 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 13.0805, 13.5561 )
+
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 16, 11 )
+
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 69.1638, 10 )
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 13.3009, 6.59398 )
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 10.0499
@@ -49,10 +67,12 @@ extents = Vector2( 54, 10 )
 extents = Vector2( 52, 15.4738 )
 
 [node name="Node2D" type="Node2D"]
+position = Vector2( -0.647068, -2.9118 )
 script = ExtResource( 3 )
 player_container = "container"
 
 [node name="bg" type="Sprite" parent="."]
+position = Vector2( 1.32037, 2.20064 )
 texture = ExtResource( 4 )
 
 [node name="cam" type="Camera2D" parent="."]
@@ -76,11 +96,15 @@ script = ExtResource( 5 )
 scene_index = 1
 
 [node name="Poster" parent="." instance=ExtResource( 2 )]
-position = Vector2( -269, -73 )
+position = Vector2( -267.673, -69.6829 )
 text = "bn poster"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Poster"]
 shape = SubResource( 2 )
+
+[node name="Node" type="Node" parent="Poster"]
+script = ExtResource( 16 )
+text = "I listen to lots of music."
 
 [node name="Poster2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -216, -70 )
@@ -89,12 +113,78 @@ text = "mcr poster"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Poster2"]
 shape = SubResource( 3 )
 
+[node name="Node" type="Node" parent="Poster2"]
+script = ExtResource( 16 )
+text = "I listen to lots of music."
+
+[node name="Poster3" parent="." instance=ExtResource( 2 )]
+position = Vector2( -155.742, -64.3854 )
+text = "ihm poster"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Poster3"]
+shape = SubResource( 12 )
+
+[node name="Node" type="Node" parent="Poster3"]
+script = ExtResource( 16 )
+text = "I listen to lots of music."
+
+[node name="Poster4" parent="." instance=ExtResource( 2 )]
+position = Vector2( -11.6146, -83.5879 )
+text = "hh poster"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Poster4"]
+shape = SubResource( 13 )
+
+[node name="Node" type="Node" parent="Poster4"]
+script = ExtResource( 16 )
+text = "I listen to lots of music."
+
+[node name="Poster5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 180.387, -13.3709 )
+text = "tu poster"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Poster5"]
+shape = SubResource( 14 )
+
+[node name="Node" type="Node" parent="Poster5"]
+script = ExtResource( 16 )
+text = "I listen to lots of music."
+
+[node name="Poster6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 223.9, -19.2885 )
+text = "sf poster"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Poster6"]
+shape = SubResource( 15 )
+
+[node name="Node" type="Node" parent="Poster6"]
+script = ExtResource( 16 )
+text = "I listen to lots of music."
+
 [node name="photo" parent="." instance=ExtResource( 2 )]
 position = Vector2( 57, -65 )
 text = "photo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="photo"]
 shape = SubResource( 4 )
+
+[node name="photo2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 216.085, -62.8498 )
+text = "my photos"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="photo2"]
+shape = SubResource( 16 )
+
+[node name="books" parent="." instance=ExtResource( 2 )]
+position = Vector2( 47.3579, -24.8485 )
+text = "books"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="books"]
+shape = SubResource( 17 )
+
+[node name="Node" type="Node" parent="books"]
+script = ExtResource( 16 )
+text = "One day I'll have my own library."
 
 [node name="toy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 114, -27 )
@@ -104,8 +194,9 @@ distance_to_activate = 150
 [node name="CollisionShape2D" type="CollisionShape2D" parent="toy"]
 shape = SubResource( 5 )
 
-[node name="trigger_handler" type="Node" parent="toy"]
-script = ExtResource( 7 )
+[node name="Node" type="Node" parent="toy"]
+script = ExtResource( 16 )
+text = "He behaved so badly."
 
 [node name="pants" parent="." instance=ExtResource( 2 )]
 position = Vector2( 149, 52 )
@@ -206,7 +297,15 @@ shape = SubResource( 11 )
 position = Vector2( -273, 85 )
 frame = 3
 offset = Vector2( 0, -73.013 )
+
 [connection signal="triggered" from="Door" to="Door/trigger_handler" method="_on_triggered"]
-[connection signal="triggered" from="toy" to="toy/trigger_handler" method="_on_toy_triggered"]
+[connection signal="triggered" from="Poster" to="Poster/Node" method="_on_triggered"]
+[connection signal="triggered" from="Poster2" to="Poster2/Node" method="_on_triggered"]
+[connection signal="triggered" from="Poster3" to="Poster3/Node" method="_on_triggered"]
+[connection signal="triggered" from="Poster4" to="Poster4/Node" method="_on_triggered"]
+[connection signal="triggered" from="Poster5" to="Poster5/Node" method="_on_triggered"]
+[connection signal="triggered" from="Poster6" to="Poster6/Node" method="_on_triggered"]
+[connection signal="triggered" from="books" to="books/Node" method="_on_triggered"]
+[connection signal="triggered" from="toy" to="toy/Node" method="_on_triggered"]
 [connection signal="triggered" from="pants" to="pants/actions_handler" method="_on_pants_triggered"]
 [connection signal="triggered" from="pills" to="pills/actions_handler" method="_on_triggered"]

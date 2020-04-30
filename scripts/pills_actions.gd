@@ -14,7 +14,7 @@ func remove_from_scene():
 	return parent
 	
 func _on_examine(action):
-	Global.show_text("pills helps me feeling well.")
+	Global.show_text("You have to drink them to keep the virus symptoms down.")
 	get_parent().close_actions_menu()
 	
 func _on_use(action):

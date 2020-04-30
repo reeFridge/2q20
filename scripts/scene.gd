@@ -70,3 +70,7 @@ func leave():
 
 func get_player():
 	return player
+
+
+func _on_triggered():
+	pass # Replace with function body.

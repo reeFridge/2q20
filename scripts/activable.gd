@@ -66,3 +66,7 @@ func _on_Area2D_mouse_exited():
 	remove_child(label)
 	label.queue_free()
 	label = null
+
+
+func _on_triggered():
+	pass # Replace with function body.
