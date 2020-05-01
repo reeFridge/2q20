@@ -16,7 +16,7 @@ func notify_every_activable(instance):
 
 func _ready():
 	print("global loaded")
-	change_scene(4)
+	change_scene(0)
 	
 func get_player():
 	return main.get_player()

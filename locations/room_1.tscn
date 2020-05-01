@@ -24,46 +24,46 @@ extents = Vector2( 14, 14 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 20, 28 )
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 23.6608, 22.7824 )
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 18.1179, 23.9415 )
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 8.79082, 7.34462 )
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 13.0805, 13.5561 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 16, 11 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 69.1638, 10 )
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 13.3009, 6.59398 )
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=11]
 radius = 10.0499
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 5, 6 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 5, 8 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 58, 12 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 16, 14 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 54, 10 )
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 52, 15.4738 )
 
 [node name="Node2D" type="Node2D"]
@@ -122,7 +122,7 @@ position = Vector2( -155.742, -64.3854 )
 text = "ihm poster"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Poster3"]
-shape = SubResource( 12 )
+shape = SubResource( 4 )
 
 [node name="Node" type="Node" parent="Poster3"]
 script = ExtResource( 16 )
@@ -133,7 +133,7 @@ position = Vector2( -11.6146, -83.5879 )
 text = "hh poster"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Poster4"]
-shape = SubResource( 13 )
+shape = SubResource( 5 )
 
 [node name="Node" type="Node" parent="Poster4"]
 script = ExtResource( 16 )
@@ -144,7 +144,7 @@ position = Vector2( 180.387, -13.3709 )
 text = "tu poster"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Poster5"]
-shape = SubResource( 14 )
+shape = SubResource( 6 )
 
 [node name="Node" type="Node" parent="Poster5"]
 script = ExtResource( 16 )
@@ -155,7 +155,7 @@ position = Vector2( 223.9, -19.2885 )
 text = "sf poster"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Poster6"]
-shape = SubResource( 15 )
+shape = SubResource( 7 )
 
 [node name="Node" type="Node" parent="Poster6"]
 script = ExtResource( 16 )
@@ -166,21 +166,21 @@ position = Vector2( 57, -65 )
 text = "photo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="photo"]
-shape = SubResource( 4 )
+shape = SubResource( 8 )
 
 [node name="photo2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 216.085, -62.8498 )
 text = "my photos"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="photo2"]
-shape = SubResource( 16 )
+shape = SubResource( 9 )
 
 [node name="books" parent="." instance=ExtResource( 2 )]
 position = Vector2( 47.3579, -24.8485 )
 text = "books"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="books"]
-shape = SubResource( 17 )
+shape = SubResource( 10 )
 
 [node name="Node" type="Node" parent="books"]
 script = ExtResource( 16 )
@@ -192,7 +192,7 @@ text = "toy bear"
 distance_to_activate = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="toy"]
-shape = SubResource( 5 )
+shape = SubResource( 11 )
 
 [node name="Node" type="Node" parent="toy"]
 script = ExtResource( 16 )
@@ -208,7 +208,7 @@ inventory_texture = ExtResource( 13 )
 texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pants"]
-shape = SubResource( 6 )
+shape = SubResource( 12 )
 
 [node name="actions_handler" type="Node" parent="pants"]
 script = ExtResource( 8 )
@@ -223,7 +223,7 @@ inventory_texture = ExtResource( 12 )
 texture = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pills"]
-shape = SubResource( 7 )
+shape = SubResource( 13 )
 
 [node name="actions_handler" type="Node" parent="pills"]
 script = ExtResource( 11 )
@@ -233,21 +233,21 @@ position = Vector2( 80, 52 )
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BigSofa"]
-shape = SubResource( 8 )
+shape = SubResource( 14 )
 
 [node name="LittleSofa" type="StaticBody2D" parent="."]
 position = Vector2( 284, 68 )
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LittleSofa"]
-shape = SubResource( 9 )
+shape = SubResource( 15 )
 
 [node name="Bed" type="StaticBody2D" parent="."]
 position = Vector2( 214, 54 )
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bed"]
-shape = SubResource( 10 )
+shape = SubResource( 16 )
 
 [node name="max_top" type="Position2D" parent="."]
 position = Vector2( 0, 50 )
@@ -291,13 +291,12 @@ position = Vector2( 0.228378, 12.9644 )
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="container/furniture/Table"]
-shape = SubResource( 11 )
+shape = SubResource( 17 )
 
 [node name="monitor" parent="container" instance=ExtResource( 6 )]
 position = Vector2( -273, 85 )
-frame = 3
+frame = 2
 offset = Vector2( 0, -73.013 )
-
 [connection signal="triggered" from="Door" to="Door/trigger_handler" method="_on_triggered"]
 [connection signal="triggered" from="Poster" to="Poster/Node" method="_on_triggered"]
 [connection signal="triggered" from="Poster2" to="Poster2/Node" method="_on_triggered"]
