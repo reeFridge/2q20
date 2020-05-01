@@ -19,3 +19,4 @@ func _on_examine(action):
 func _on_take(action):
 	var parent = remove_from_scene()
 	Global.take_item(parent)
+	Global.get_player().equip_knife(true)

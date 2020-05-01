@@ -173,8 +173,14 @@ position = Vector2( -280, 0 )
 [node name="spawn" type="Position2D" parent="."]
 position = Vector2( 214, 90 )
 
+[node name="direction" type="Position2D" parent="spawn"]
+position = Vector2( -84, 0 )
+
 [node name="spawn_door" type="Position2D" parent="."]
 position = Vector2( -88, 58 )
+
+[node name="direction" type="Position2D" parent="spawn_door"]
+position = Vector2( 77, 0 )
 
 [node name="lamp" parent="." instance=ExtResource( 1 )]
 position = Vector2( 216, -52 )
@@ -198,7 +204,7 @@ shape = SubResource( 11 )
 
 [node name="monitor" parent="container" instance=ExtResource( 6 )]
 position = Vector2( -273, 85 )
-frame = 2
+frame = 3
 offset = Vector2( 0, -73.013 )
 [connection signal="triggered" from="Door" to="Door/trigger_handler" method="_on_triggered"]
 [connection signal="triggered" from="toy" to="toy/trigger_handler" method="_on_toy_triggered"]

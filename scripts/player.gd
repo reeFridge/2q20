@@ -15,6 +15,25 @@ var current_target = null
 var min_distance_to_target = MIN_DISTANCE
 var direction = Vector2()
 
+var walk_animation = "walk"
+var stand_animation = "stand"
+
+func copy_state(player):
+	speed = player.speed
+	walk_animation = player.walk_animation
+	stand_animation = player.stand_animation
+
+func set_collision(state):
+	$CollisionShape2D.disabled = !state
+
+func equip_knife(state):
+	if state:
+		walk_animation = "knife_walk"
+		stand_animation = "knife_stand"
+	else:
+		walk_animation = "walk"
+		stand_animation = "stand"
+
 func change_target(target):
 	current_target = target
 	emit_signal("target_changed")
@@ -80,9 +99,9 @@ func _physics_process(delta):
 			direction.y = 0
 
 	if direction.length_squared():
-		$AnimatedSprite.play("walk")
+		$AnimatedSprite.play(walk_animation)
 	else:
-		$AnimatedSprite.play("stand")
+		$AnimatedSprite.play(stand_animation)
 		
 	if !is_inside_tree():
 		return

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/left-run-8.png-018db73b490a2aadd3e4d181b805383c.stex"
+path="res://.import/attak-3.png-21800372fb166dd0a20412a17b420e8d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/left-run-8.png"
-dest_files=[ "res://.import/left-run-8.png-018db73b490a2aadd3e4d181b805383c.stex" ]
+source_file="res://assets/sprites/attak-3.png"
+dest_files=[ "res://.import/attak-3.png-21800372fb166dd0a20412a17b420e8d.stex" ]
 
 [params]
 

@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/sounds/glitch.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/sprites/mental.png" type="Texture" id=9]
 [ext_resource path="res://ui/inventory.tscn" type="PackedScene" id=10]
+[ext_resource path="res://styles/ui.tres" type="StyleBox" id=11]
 
 [sub_resource type="Animation" id=1]
 tracks/0/type = "value"
@@ -56,11 +57,6 @@ tracks/0/keys = {
 "values": [ 0.0, -0.5, 1.0, -3.0, 1.0, 0.0 ]
 }
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.0509804, 0.0509804, 0.0509804, 0.784314 )
-border_width_bottom = 2
-border_color = Color( 0.592157, 0.388235, 0.168627, 1 )
-
 [sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 4 )
 
@@ -97,7 +93,7 @@ anchor_left = 0.022
 anchor_top = 0.785
 anchor_right = 0.978
 anchor_bottom = 0.96
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -117,6 +113,7 @@ __meta__ = {
 }
 
 [node name="inventory" parent="ui" instance=ExtResource( 10 )]
+custom_styles/panel = ExtResource( 11 )
 
 [node name="mental" type="TextureProgress" parent="ui"]
 margin_left = 14.0

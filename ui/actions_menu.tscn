@@ -1,26 +1,29 @@
 [gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://styles/ui.tres" type="StyleBox" id=1]
 [ext_resource path="res://scripts/actions_menu.gd" type="Script" id=2]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.0509804, 0.0509804, 0.0509804, 0.784314 )
-border_width_bottom = 1
-border_color = Color( 0.592157, 0.388235, 0.168627, 1 )
-expand_margin_left = 3.0
-expand_margin_right = 3.0
-expand_margin_top = 3.0
-expand_margin_bottom = 3.0
-anti_aliasing = false
 
 [node name="Control" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1200.0
 margin_bottom = -666.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 4.0
+margin_bottom = 4.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 2.0
+margin_bottom = 2.0

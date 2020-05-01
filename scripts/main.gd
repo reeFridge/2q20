@@ -2,6 +2,7 @@ extends Node
 
 var current_scene: Node2D = null
 var next_scene: Node2D = null
+var player = preload("res://player/player.tscn").instance()
 
 enum TransitionPhase {
 	NONE,
@@ -15,10 +16,7 @@ func _ready():
 	$ui.show_fading_rect()
 
 func get_player():
-	if current_scene != null:
-		return current_scene.get_player()
-		
-	return null
+	return player
 	
 func glitch():
 	$audio.play()
@@ -29,6 +27,7 @@ func glitch():
 		$screen_effects.play_backwards("glitch")
 
 func set_scene(scene, spawn_name):
+	scene_transition_phase = TransitionPhase.NONE
 	glitch()
 
 	scene.spawn_name = spawn_name
@@ -51,11 +50,10 @@ func perform_transition():
 	if current_scene != null:
 		current_scene.leave()
 		remove_child(current_scene)
+	add_child(next_scene)
+	next_scene.call_deferred("enter", player)
 	current_scene = next_scene
 	next_scene = null
-	add_child(current_scene)
-	if current_scene.ready:
-		current_scene.enter()
 
 func next_transition_phase(current_phase = scene_transition_phase):
 	match current_phase:

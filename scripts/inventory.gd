@@ -11,6 +11,13 @@ func add_item(item):
 	icons.push_back(icon)
 	container.add_child(icon)
 	update_placeholder()
+	
+func has_item_with_text(text):
+	for item in items:
+		if item.text == text:
+			return true
+	
+	return false
 
 func update_placeholder():
 	if len(items) == 0:

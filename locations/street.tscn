@@ -31,8 +31,14 @@ position = Vector2( -335.691, 0 )
 [node name="spawn" parent="." index="4"]
 position = Vector2( -189.738, 33.171 )
 
+[node name="direction" type="Position2D" parent="spawn" index="0"]
+position = Vector2( 109.464, 0 )
+
 [node name="from_park" type="Position2D" parent="." index="5"]
 position = Vector2( 318.442, 52.4102 )
+
+[node name="direction" type="Position2D" parent="from_park" index="0"]
+position = Vector2( -69.6592, 0 )
 
 [node name="cam" parent="." index="6"]
 limit_left = -349

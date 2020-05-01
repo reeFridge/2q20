@@ -21,6 +21,9 @@ position = Vector2( -478, 0 )
 [node name="spawn" parent="." index="4"]
 position = Vector2( -403, 84 )
 
+[node name="direction" type="Position2D" parent="spawn" index="0"]
+position = Vector2( 127, 0 )
+
 [node name="cam" parent="." index="5"]
 limit_left = -450
 limit_top = -600

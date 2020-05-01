@@ -10,5 +10,5 @@ func init(actions_map):
 		var target = actions_map[action][0]
 		var method = actions_map[action][1]
 		button.connect("button_down", target, method, [action])
-		$HBoxContainer.add_child(button)
+		$MarginContainer/HBoxContainer.add_child(button)
 

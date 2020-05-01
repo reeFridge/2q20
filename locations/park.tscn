@@ -6,14 +6,14 @@
 [ext_resource path="res://assets/sprites/park-bench.png" type="Texture" id=4]
 [ext_resource path="res://locations/transition_area.tscn" type="PackedScene" id=5]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 87.5952, 8.22055 )
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 11.9448
 height = 53.4672
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 19.0258, 13.1325 )
 
 [node name="Node2D" instance=ExtResource( 1 )]
@@ -35,8 +35,14 @@ position = Vector2( -479.259, 0 )
 [node name="spawn" parent="." index="4"]
 position = Vector2( -396.593, 129.01 )
 
+[node name="direction" type="Position2D" parent="spawn" index="0"]
+position = Vector2( 122.026, 0 )
+
 [node name="from_graveyard" type="Position2D" parent="." index="5"]
 position = Vector2( 392.539, 110.264 )
+
+[node name="direction" type="Position2D" parent="from_graveyard" index="0"]
+position = Vector2( -136.727, 0 )
 
 [node name="cam" parent="." index="6"]
 limit_left = -450
@@ -60,7 +66,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="container/park-bench/StaticBody2D" index="0"]
 position = Vector2( 0, 0.440125 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="park-wood" type="Sprite" parent="container" index="1"]
 position = Vector2( -312.846, 94.5553 )
@@ -74,20 +80,20 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="container/park-wood/StaticBody2D" index="0"]
 position = Vector2( 0.568787, 3.98163 )
 rotation = 1.5708
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
 position = Vector2( 214.465, 16.245 )
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="to_graveyard" parent="." index="10" instance=ExtResource( 5 )]
 position = Vector2( 466.471, 82.7356 )
 target_scene = 4
 
-[node name="to_street" parent="." index="11" instance=ExtResource( 5 )]
-position = Vector2( -468.212, 80.2308 )
+[node name="transition_area" parent="." index="11" instance=ExtResource( 5 )]
+position = Vector2( -468.752, 82.223 )
 target_scene = 2
 target_spawn = "from_park"

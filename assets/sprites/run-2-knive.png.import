@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/left-run-2.png-4f734290101127a6a8539d3c8960018d.stex"
+path="res://.import/run-2-knive.png-b63a75f5f1dbf30b9fdfb1bf611bccb8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/left-run-2.png"
-dest_files=[ "res://.import/left-run-2.png-4f734290101127a6a8539d3c8960018d.stex" ]
+source_file="res://assets/sprites/run-2-knive.png"
+dest_files=[ "res://.import/run-2-knive.png-b63a75f5f1dbf30b9fdfb1bf611bccb8.stex" ]
 
 [params]
 
