@@ -26,20 +26,6 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=2]
-tracks/0/type = "value"
-tracks/0/path = NodePath("ui/text_panel/text:percent_visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 1.0 ]
-}
-
 [sub_resource type="Animation" id=3]
 resource_name = "glitch"
 length = 0.5
@@ -57,6 +43,22 @@ tracks/0/keys = {
 "values": [ 0.0, -0.5, 1.0, -3.0, 1.0, 0.0 ]
 }
 
+[sub_resource type="Animation" id=7]
+resource_name = "typing"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("text:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 4 )
 
@@ -68,7 +70,7 @@ shader_param/offset_texture = ExtResource( 7 )
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 2 )
-shader_param/opacity = 0.0
+shader_param/opacity = 0.4
 
 [node name="main" type="Node"]
 script = ExtResource( 1 )
@@ -79,7 +81,6 @@ volume_db = -30.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fg_fade = SubResource( 1 )
-anims/typing = SubResource( 2 )
 
 [node name="screen_effects" type="AnimationPlayer" parent="."]
 playback_speed = 2.0
@@ -98,6 +99,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="anim" type="AnimationPlayer" parent="ui/text_panel"]
+anims/typing = SubResource( 7 )
+
 [node name="text" type="RichTextLabel" parent="ui/text_panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -106,6 +110,8 @@ margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
 custom_fonts/normal_font = SubResource( 4 )
+visible_characters = 2
+percent_visible = 0.2
 text = "Some thoughts"
 scroll_active = false
 __meta__ = {
@@ -113,7 +119,6 @@ __meta__ = {
 }
 
 [node name="inventory" parent="ui" instance=ExtResource( 10 )]
-custom_styles/panel = ExtResource( 11 )
 
 [node name="mental" type="TextureProgress" parent="ui"]
 margin_left = 14.0
@@ -150,4 +155,14 @@ color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="overlay" type="ColorRect" parent="ui"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="gui_input" from="ui/overlay" to="ui" method="_on_overlay_gui_input"]

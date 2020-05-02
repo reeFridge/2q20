@@ -1,29 +1,62 @@
-extends PanelContainer
+extends Control
 
-onready var container = $MarginContainer/HBoxContainer
+onready var inventory_container = $inventory/MarginContainer/HBoxContainer
+onready var desc_name = $desc/MarginContainer/VBoxContainer/name
+onready var desc_text = $desc/MarginContainer/VBoxContainer/desc
 var items = []
 var icons = []
+
+func update_active_state(item, state):
+	var item_idx = items.find(item)
+	if item_idx != -1:
+		var icon = icons[item_idx]
+		icon.get_node("container").visible = state
 
 func add_item(item):
 	items.push_back(item)
 	var icon = preload("res://ui/inventory_item.tscn").instance()
+	icon.connect("gui_input", self, "item_icon_input", [item])
+	icon.connect("mouse_entered", self, "item_icon_focused", [item])
+	icon.connect("mouse_exited", self, "item_icon_unfocused")
 	icon.texture = item.inventory_texture
 	icons.push_back(icon)
-	container.add_child(icon)
+	inventory_container.add_child_below_node(inventory_container.get_node("placeholder"), icon)
 	update_placeholder()
+
+func remove_item(item):
+	var item_idx = items.find(item)
+	if item_idx != -1:
+		var icon = icons[item_idx]
+		item_icon_unfocused()
+		inventory_container.remove_child(icon)
+		items.remove(item_idx)
+		icons.remove(item_idx)
+	update_placeholder()
+
+func item_icon_focused(item):
+	$desc.show()
+	desc_name.text = item.text
+	desc_text.text = item.inventory_text
 	
-func has_item_with_text(text):
-	for item in items:
-		if item.text == text:
-			return true
-	
-	return false
+func item_icon_unfocused():
+	$desc.hide()
+	desc_name.text = ""
+	desc_text.text = ""
+	# force update size
+	$desc.show()
+	$desc.hide()
 
 func update_placeholder():
 	if len(items) == 0:
-		container.get_node("placeholder").show()
+		inventory_container.get_node("placeholder").show()
 	else:
-		container.get_node("placeholder").hide()
+		inventory_container.get_node("placeholder").hide()
+	# force update size
+	$inventory.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+
+func item_icon_input(event, item):
+	if event is InputEventMouseButton && event.pressed:
+		item.activated_from_inventory()
 
 func _ready():
-	container.get_node("placeholder").show()
+	inventory_container.get_node("placeholder").show()

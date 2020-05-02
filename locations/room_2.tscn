@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scripts/knife_actions.gd" type="Script" id=10]
 [ext_resource path="res://assets/sprites/knife.png" type="Texture" id=11]
 [ext_resource path="res://assets/sprites/mebel.png" type="Texture" id=12]
+[ext_resource path="res://locations/reply_trigger.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 124, 12 )
@@ -159,7 +160,6 @@ scene_index = 2
 [node name="clock" type="AnimatedSprite" parent="." index="11"]
 position = Vector2( 189.738, -106.147 )
 frames = SubResource( 4 )
-frame = 2
 playing = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="clock" index="0"]
@@ -196,18 +196,19 @@ offset = Vector2( 0, -20 )
 shape = SubResource( 24 )
 
 [node name="knife" parent="container" index="2" instance=ExtResource( 1 )]
-position = Vector2( -227.6, 82.0451 )
+position = Vector2( -224.519, 80.2846 )
 text = "knife"
-distance_to_activate = 60
+inventory_text = "equip/unequip"
+distance_to_activate = 70
 inventory_texture = ExtResource( 11 )
 
 [node name="knife" type="Sprite" parent="container/knife" index="0"]
-position = Vector2( 0, -22.7013 )
+position = Vector2( 0, -37.6656 )
 texture = ExtResource( 11 )
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="container/knife" index="1"]
-position = Vector2( 0, -22.7013 )
+position = Vector2( 0, -37.6656 )
 shape = SubResource( 8 )
 
 [node name="actions" type="Node" parent="container/knife" index="2"]
@@ -346,6 +347,8 @@ shape = SubResource( 22 )
 [node name="Node" type="Node" parent="TV" index="1"]
 script = ExtResource( 5 )
 text = "When my parents had died, I broke the TV screen, never liked its sound."
+
+[node name="near_door_reply" parent="." index="29" instance=ExtResource( 13 )]
 [connection signal="triggered" from="room_1_door" to="room_1_door/trigger_handler" method="_on_triggered"]
 [connection signal="triggered" from="street_door" to="street_door/trigger_handler" method="_on_triggered"]
 [connection signal="triggered" from="container/knife" to="container/knife/actions" method="_on_triggered"]

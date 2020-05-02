@@ -9,9 +9,6 @@ export var player_container = ""
 export var fade = false
 onready var cam = $cam
 
-func _ready():
-	pass
-
 func enter(player_instance):
 	player = player_instance
 	cam.current = true
@@ -70,7 +67,6 @@ func leave():
 
 func get_player():
 	return player
-
 
 func _on_triggered():
 	pass # Replace with function body.

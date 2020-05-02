@@ -22,7 +22,10 @@ func get_player():
 	return main.get_player()
 	
 func show_text(text):
-	main.get_node("ui").show_text(text, 5)
+	main.get_node("ui").show_text(text, 10)
+
+func show_text_series(text_series, timeout = 10):
+	main.get_node("ui").show_text_series(text_series, timeout)
 	
 func change_scene(scene_index, spawn_name = "spawn"):
 	print("change scene -> ", scene_index)
@@ -30,4 +33,10 @@ func change_scene(scene_index, spawn_name = "spawn"):
 		main.set_scene(scenes[scene_index], spawn_name)
 
 func take_item(item):
-	main.get_node("ui").get_node("inventory").add_item(item)
+	main.get_node("ui/inventory").add_item(item)
+	
+func remove_item(item):
+	main.get_node("ui/inventory").remove_item(item)
+
+func update_active_state(item, state):
+	main.get_node("ui/inventory").update_active_state(item, state)

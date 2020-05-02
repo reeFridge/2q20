@@ -1,7 +1,9 @@
 extends Area2D
 signal triggered
+signal triggered_from_inventory()
 
 export var text = "unknown item"
+export var inventory_text = ""
 export var distance_to_activate = -1
 export(Texture) var inventory_texture
 var label: Label = null
@@ -42,6 +44,9 @@ func _trigger():
 	if Global.get_player().is_connected("target_changed", self, "_unsubscribe"):
 		Global.get_player().disconnect("target_changed", self, "_unsubscribe")
 	emit_signal("triggered")
+	
+func activated_from_inventory():
+	emit_signal("triggered_from_inventory")
 
 func show_actions_menu(actions):
 	menu = preload("res://ui/actions_menu.tscn").instance()
@@ -66,7 +71,3 @@ func _on_Area2D_mouse_exited():
 	remove_child(label)
 	label.queue_free()
 	label = null
-
-
-func _on_triggered():
-	pass # Replace with function body.

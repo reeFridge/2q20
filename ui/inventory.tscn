@@ -1,14 +1,27 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/inventory_item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/inventory.gd" type="Script" id=2]
+[ext_resource path="res://styles/ui.tres" type="StyleBox" id=3]
+[ext_resource path="res://assets/fonts/m6x11.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.0509804, 0.0509804, 0.0509804, 0.784314 )
-border_width_bottom = 2
-border_color = Color( 0.592157, 0.388235, 0.168627, 1 )
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
 
-[node name="inventory" type="PanelContainer"]
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 4 )
+
+[node name="Container" type="Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -181.0
+margin_bottom = 113.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="inventory" type="PanelContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -30.0
@@ -16,13 +29,12 @@ margin_top = 10.0
 margin_right = -10.0
 margin_bottom = 32.0
 grow_horizontal = 0
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 2 )
+custom_styles/panel = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="inventory"]
 margin_right = 20.0
 margin_bottom = 30.0
 custom_constants/margin_right = 5
@@ -30,19 +42,69 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 5.0
+[node name="HBoxContainer" type="HBoxContainer" parent="inventory/MarginContainer"]
+margin_left = 15.0
 margin_top = 5.0
 margin_right = 15.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 20 )
 rect_clip_content = true
-custom_constants/separation = 10
-alignment = 1
+size_flags_horizontal = 10
+custom_constants/separation = 5
+alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="placeholder" parent="MarginContainer/HBoxContainer" instance=ExtResource( 1 )]
+[node name="placeholder" parent="inventory/MarginContainer/HBoxContainer" instance=ExtResource( 1 )]
 visible = false
 texture = null
+
+[node name="desc" type="PanelContainer" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -30.0
+margin_top = 44.0
+margin_right = -10.0
+margin_bottom = 70.0
+grow_horizontal = 0
+custom_styles/panel = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="desc"]
+margin_right = 160.0
+margin_bottom = 42.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="desc/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 155.0
+margin_bottom = 37.0
+grow_horizontal = 0
+
+[node name="name" type="Label" parent="desc/MarginContainer/VBoxContainer"]
+margin_right = 150.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "unknown item"
+max_lines_visible = 1
+
+[node name="desc" type="Label" parent="desc/MarginContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 150.0
+margin_bottom = 32.0
+grow_vertical = 0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.407843, 0.407843, 0.407843, 1 )
+text = "effect"
+autowrap = true

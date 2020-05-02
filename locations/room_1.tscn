@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://items/lamp_togglable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sprites/home-room-1.png" type="Texture" id=4]
 [ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=5]
 [ext_resource path="res://items/monitor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://locations/entered.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scripts/pants_actions_handler.gd" type="Script" id=8]
 [ext_resource path="res://assets/sprites/pants.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/pills.png" type="Texture" id=10]
@@ -25,16 +26,16 @@ extents = Vector2( 14, 14 )
 extents = Vector2( 20, 28 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 23.6608, 22.7824 )
+extents = Vector2( 19.3747, 20.3462 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 18.1179, 23.9415 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 8.79082, 7.34462 )
+extents = Vector2( 7.61301, 7.34462 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 13.0805, 13.5561 )
+extents = Vector2( 12.4051, 11.3536 )
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 16, 11 )
@@ -67,7 +68,6 @@ extents = Vector2( 54, 10 )
 extents = Vector2( 52, 15.4738 )
 
 [node name="Node2D" type="Node2D"]
-position = Vector2( -0.647068, -2.9118 )
 script = ExtResource( 3 )
 player_container = "container"
 
@@ -83,7 +83,7 @@ limit_right = 300
 limit_bottom = 166
 
 [node name="Door" parent="." instance=ExtResource( 2 )]
-position = Vector2( -88, 40 )
+position = Vector2( -86, 43 )
 text = "main room"
 distance_to_activate = 50
 
@@ -107,7 +107,7 @@ script = ExtResource( 16 )
 text = "I listen to lots of music."
 
 [node name="Poster2" parent="." instance=ExtResource( 2 )]
-position = Vector2( -216, -70 )
+position = Vector2( -214.353, -68.0882 )
 text = "mcr poster"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Poster2"]
@@ -118,10 +118,11 @@ script = ExtResource( 16 )
 text = "I listen to lots of music."
 
 [node name="Poster3" parent="." instance=ExtResource( 2 )]
-position = Vector2( -155.742, -64.3854 )
+position = Vector2( -155, -61 )
 text = "ihm poster"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Poster3"]
+rotation = 0.497419
 shape = SubResource( 4 )
 
 [node name="Node" type="Node" parent="Poster3"]
@@ -129,7 +130,7 @@ script = ExtResource( 16 )
 text = "I listen to lots of music."
 
 [node name="Poster4" parent="." instance=ExtResource( 2 )]
-position = Vector2( -11.6146, -83.5879 )
+position = Vector2( -10.3529, -81.0882 )
 text = "hh poster"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Poster4"]
@@ -144,6 +145,7 @@ position = Vector2( 180.387, -13.3709 )
 text = "tu poster"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Poster5"]
+position = Vector2( 1.61301, 2.3709 )
 shape = SubResource( 6 )
 
 [node name="Node" type="Node" parent="Poster5"]
@@ -151,10 +153,11 @@ script = ExtResource( 16 )
 text = "I listen to lots of music."
 
 [node name="Poster6" parent="." instance=ExtResource( 2 )]
-position = Vector2( 223.9, -19.2885 )
+position = Vector2( 225, -18 )
 text = "sf poster"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Poster6"]
+rotation = -0.586431
 shape = SubResource( 7 )
 
 [node name="Node" type="Node" parent="Poster6"]
@@ -162,7 +165,7 @@ script = ExtResource( 16 )
 text = "I listen to lots of music."
 
 [node name="photo" parent="." instance=ExtResource( 2 )]
-position = Vector2( 57, -65 )
+position = Vector2( 57, -63.0882 )
 text = "photo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="photo"]
@@ -176,7 +179,7 @@ text = "my photos"
 shape = SubResource( 9 )
 
 [node name="books" parent="." instance=ExtResource( 2 )]
-position = Vector2( 47.3579, -24.8485 )
+position = Vector2( 47.3579, -22.0882 )
 text = "books"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="books"]
@@ -187,7 +190,7 @@ script = ExtResource( 16 )
 text = "One day I'll have my own library."
 
 [node name="toy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 114, -27 )
+position = Vector2( 115.647, -25.0882 )
 text = "toy bear"
 distance_to_activate = 150
 
@@ -200,7 +203,8 @@ text = "He behaved so badly."
 
 [node name="pants" parent="." instance=ExtResource( 2 )]
 position = Vector2( 149, 52 )
-text = "my pants"
+text = "pants"
+inventory_text = "I can make a mask from it"
 distance_to_activate = 60
 inventory_texture = ExtResource( 13 )
 
@@ -214,8 +218,9 @@ shape = SubResource( 12 )
 script = ExtResource( 8 )
 
 [node name="pills" parent="." instance=ExtResource( 2 )]
-position = Vector2( 284, 28 )
+position = Vector2( 284.647, 30.2 )
 text = "pills"
+inventory_text = "heals 10 mental points"
 distance_to_activate = 80
 inventory_texture = ExtResource( 12 )
 
@@ -228,18 +233,18 @@ shape = SubResource( 13 )
 [node name="actions_handler" type="Node" parent="pills"]
 script = ExtResource( 11 )
 
-[node name="BigSofa" type="StaticBody2D" parent="."]
+[node name="BigShelve" type="StaticBody2D" parent="."]
 position = Vector2( 80, 52 )
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BigSofa"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigShelve"]
 shape = SubResource( 14 )
 
-[node name="LittleSofa" type="StaticBody2D" parent="."]
+[node name="LittleShelve" type="StaticBody2D" parent="."]
 position = Vector2( 284, 68 )
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LittleSofa"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LittleShelve"]
 shape = SubResource( 15 )
 
 [node name="Bed" type="StaticBody2D" parent="."]
@@ -274,7 +279,7 @@ position = Vector2( -88, 58 )
 position = Vector2( 77, 0 )
 
 [node name="lamp" parent="." instance=ExtResource( 1 )]
-position = Vector2( 216, -52 )
+position = Vector2( 216, -49 )
 collision_layer = 8
 collision_mask = 0
 distance_to_activate = 150
@@ -295,8 +300,11 @@ shape = SubResource( 17 )
 
 [node name="monitor" parent="container" instance=ExtResource( 6 )]
 position = Vector2( -273, 85 )
-frame = 2
+frame = 3
 offset = Vector2( 0, -73.013 )
+
+[node name="entered" parent="." instance=ExtResource( 7 )]
+text = [ "Today someone dropped me a note. It says that I’m being invited on meeting at the crypt of local cemetery tonight.", "That’s weird, people are locking up home on a day like these.", "I don't have any friends at school, and nobody cares about me", "I often visit our school counselor after my parents' death. Maybe that's why my classmates avoiding me.", "I'm not afraid to go to the cemetery, I don't care what happens to me.", "My school counselor told me to write my thoughts down in the notebook. I don't see a point ... I tried to make notes in the phone, but then I got used to say them out loud.", "Miss Rasper told me to overcome parents' loss I need to make new friends", "Huh, seems like everybody avoiding me even more after her advice" ]
 [connection signal="triggered" from="Door" to="Door/trigger_handler" method="_on_triggered"]
 [connection signal="triggered" from="Poster" to="Poster/Node" method="_on_triggered"]
 [connection signal="triggered" from="Poster2" to="Poster2/Node" method="_on_triggered"]
