@@ -105,3 +105,6 @@ func _on_quit_pressed():
 func _on_back_pressed():
 	$menu/buttons.show()
 	$menu/about.hide()
+
+func _on_about_meta_clicked(meta):
+	OS.shell_open(meta)

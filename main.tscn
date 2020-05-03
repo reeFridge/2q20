@@ -320,4 +320,5 @@ text = "special for
 [connection signal="pressed" from="ui/menu/buttons/start" to="ui" method="_on_start_pressed"]
 [connection signal="pressed" from="ui/menu/buttons/about" to="ui" method="_on_about_pressed"]
 [connection signal="pressed" from="ui/menu/buttons/quit" to="ui" method="_on_quit_pressed"]
+[connection signal="meta_clicked" from="ui/menu/about/about/HBoxContainer/about" to="ui" method="_on_about_meta_clicked"]
 [connection signal="pressed" from="ui/menu/about/about/back" to="ui" method="_on_back_pressed"]
