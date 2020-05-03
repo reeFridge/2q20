@@ -18,7 +18,9 @@ _global_script_class_icons={
 config/name="2q20"
 run/main_scene="res://main.tscn"
 config/use_custom_user_dir=true
-config/icon="res://icon.png"
+boot_splash/image="res://assets/sprites/menu_bg.png"
+boot_splash/use_filter=false
+config/icon="res://assets/sprites/knife.png"
 
 [autoload]
 
