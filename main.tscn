@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://shaders/transition.shader" type="Shader" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://assets/sprites/mental.png" type="Texture" id=9]
 [ext_resource path="res://ui/inventory.tscn" type="PackedScene" id=10]
 [ext_resource path="res://styles/ui.tres" type="StyleBox" id=11]
+[ext_resource path="res://assets/fonts/17719.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://assets/sprites/menu_bg.png" type="Texture" id=13]
+[ext_resource path="res://ui/menu_button.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Animation" id=1]
 tracks/0/type = "value"
@@ -72,6 +75,17 @@ shader_param/offset_texture = ExtResource( 7 )
 shader = ExtResource( 2 )
 shader_param/opacity = 0.4
 
+[sub_resource type="DynamicFont" id=8]
+size = 100
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 10
+font_data = ExtResource( 12 )
+
 [node name="main" type="Node"]
 script = ExtResource( 1 )
 
@@ -110,7 +124,7 @@ margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
 custom_fonts/normal_font = SubResource( 4 )
-visible_characters = 2
+visible_characters = 0
 percent_visible = 0.2
 text = "Some thoughts"
 scroll_active = false
@@ -164,5 +178,146 @@ color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="menu" type="Control" parent="ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="TextureRect" parent="ui/menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -600.0
+margin_top = -333.0
+margin_right = 600.0
+margin_bottom = 333.0
+texture = ExtResource( 13 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="ui/menu"]
+anchor_left = 0.5
+anchor_top = 0.3
+anchor_right = 0.5
+anchor_bottom = 0.3
+margin_left = -169.0
+margin_top = -36.5
+margin_right = 169.0
+margin_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.733333, 0.709804, 0.709804, 1 )
+custom_colors/font_color_shadow = Color( 0.251465, 0.251465, 0.251465, 0.470588 )
+custom_constants/shadow_offset_y = 3
+text = "2q20"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buttons" type="HBoxContainer" parent="ui/menu"]
+anchor_left = 0.5
+anchor_top = 0.572
+anchor_right = 0.5
+anchor_bottom = 0.66
+margin_left = -98.5
+margin_top = -18.5
+margin_right = 98.5
+margin_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="start" parent="ui/menu/buttons" instance=ExtResource( 14 )]
+
+[node name="about" parent="ui/menu/buttons" instance=ExtResource( 14 )]
+margin_left = 140.0
+margin_right = 257.0
+text = "about"
+
+[node name="quit" parent="ui/menu/buttons" instance=ExtResource( 14 )]
+margin_left = 287.0
+margin_right = 368.0
+text = "quit"
+
+[node name="about" type="Control" parent="ui/menu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="about" type="VBoxContainer" parent="ui/menu/about"]
+anchor_left = 0.5
+anchor_top = 0.587
+anchor_right = 0.5
+anchor_bottom = 0.613
+margin_left = -150.0
+margin_top = -27.5
+margin_right = 150.0
+margin_bottom = 89.184
+grow_horizontal = 2
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ui/menu/about/about"]
+margin_right = 300.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 9 )
+text = "Game by"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/menu/about/about"]
+margin_top = 27.0
+margin_right = 300.0
+margin_bottom = 87.0
+
+[node name="about" type="RichTextLabel" parent="ui/menu/about/about/HBoxContainer"]
+margin_right = 300.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 300, 60 )
+bbcode_enabled = true
+bbcode_text = "[center][color=aqua]@Iletora[/color]
+[ [url=https://twitter.com/Iletora]twitter[/url], [url=https://iletora.bandcamp.com]bandcamp[/url] ][/center][center][color=aqua]@reeFridge[/color]
+[ [url=https://github.com/reeFridge]github[/url] ][/center]"
+text = "@Iletora
+[ twitter, bandcamp ]@reeFridge
+[ github ]"
+
+[node name="back" parent="ui/menu/about/about" instance=ExtResource( 14 )]
+margin_top = 97.0
+margin_right = 300.0
+margin_bottom = 134.0
+text = "back"
+
+[node name="tag" type="Label" parent="ui/menu/about"]
+anchor_left = 0.98
+anchor_top = 0.98
+anchor_right = 0.98
+anchor_bottom = 0.98
+margin_left = -73.0
+margin_top = -25.0
+custom_fonts/font = SubResource( 10 )
+text = "special for 
+#AdvJam2020"
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
 [connection signal="gui_input" from="ui/overlay" to="ui" method="_on_overlay_gui_input"]
+[connection signal="pressed" from="ui/menu/buttons/start" to="ui" method="_on_start_pressed"]
+[connection signal="pressed" from="ui/menu/buttons/about" to="ui" method="_on_about_pressed"]
+[connection signal="pressed" from="ui/menu/buttons/quit" to="ui" method="_on_quit_pressed"]
+[connection signal="pressed" from="ui/menu/about/about/back" to="ui" method="_on_back_pressed"]

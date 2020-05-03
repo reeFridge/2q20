@@ -77,10 +77,10 @@ texture = ExtResource( 4 )
 
 [node name="cam" type="Camera2D" parent="."]
 position = Vector2( 0, 104 )
-limit_left = -300
+limit_left = -299
 limit_top = -540
-limit_right = 300
-limit_bottom = 166
+limit_right = 301
+limit_bottom = 168
 
 [node name="Door" parent="." instance=ExtResource( 2 )]
 position = Vector2( -86, 43 )
@@ -300,7 +300,6 @@ shape = SubResource( 17 )
 
 [node name="monitor" parent="container" instance=ExtResource( 6 )]
 position = Vector2( -273, 85 )
-frame = 3
 offset = Vector2( 0, -73.013 )
 
 [node name="entered" parent="." instance=ExtResource( 7 )]

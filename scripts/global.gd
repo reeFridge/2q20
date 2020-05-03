@@ -1,6 +1,14 @@
 extends Node
 signal activable_triggered(instance)
 
+enum GameState {
+	None,
+	Play,
+	Pause
+}
+
+var game_state = GameState.None
+
 var scenes = [
 	preload("res://locations/room_1.tscn").instance(),
 	preload("res://locations/room_2.tscn").instance(),
@@ -16,7 +24,7 @@ func notify_every_activable(instance):
 
 func _ready():
 	print("global loaded")
-	change_scene(0)
+	#change_scene(0)
 	
 func get_player():
 	return main.get_player()

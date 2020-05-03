@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://styles/menu_buttons_normal.tres" type="StyleBox" id=1]
+[ext_resource path="res://styles/menu_buttons_font.tres" type="DynamicFont" id=2]
+
+[node name="start" type="Button"]
+margin_right = 110.0
+margin_bottom = 95.0
+grow_horizontal = 2
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/focus = ExtResource( 1 )
+custom_styles/disabled = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0.196078, 0.196078, 0.196078, 1 )
+custom_colors/font_color = Color( 0.392157, 0.392157, 0.392157, 1 )
+custom_colors/font_color_hover = Color( 1, 0.898039, 0.898039, 1 )
+custom_colors/font_color_pressed = Color( 0.262745, 0, 0, 1 )
+text = "start"
+__meta__ = {
+"_edit_use_anchors_": false
+}

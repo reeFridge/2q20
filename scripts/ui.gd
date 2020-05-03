@@ -2,6 +2,17 @@ extends CanvasLayer
 
 var text_timer: Timer = null
 
+func _unhandled_key_input(event):
+	if event.pressed and event.scancode == KEY_ESCAPE and Global.game_state != Global.GameState.None:
+		if Global.game_state == Global.GameState.Play:
+			Global.game_state = Global.GameState.Pause
+			pause_resume_timer(true)
+			$menu.show()
+		else:
+			pause_resume_timer(false)
+			$menu.hide()
+			Global.game_state = Global.GameState.Play
+
 func _ready():
 	$mental.max_value = Stats.MAX_MENTAL
 	update_mental()
@@ -51,7 +62,11 @@ func remove_text_timer():
 		remove_child(text_timer)
 		text_timer.queue_free()
 		text_timer = null
-	
+		
+func pause_resume_timer(state):
+	if text_timer != null:
+		text_timer.paused = state
+
 func text_timeout():
 	remove_text_timer()
 	hide_text()
@@ -72,3 +87,21 @@ func _on_overlay_gui_input(event):
 			$text_panel/text.percent_visible = 1
 		else:
 			text_timeout()
+
+func _on_start_pressed():
+	$menu.hide()
+	$menu/buttons/start.text = "continue"
+	if Global.game_state == Global.GameState.None:
+		Global.change_scene(0)
+	Global.game_state = Global.GameState.Play
+
+func _on_about_pressed():
+	$menu/buttons.hide()
+	$menu/about.show()
+
+func _on_quit_pressed():
+	get_tree().quit(0)
+
+func _on_back_pressed():
+	$menu/buttons.show()
+	$menu/about.hide()
