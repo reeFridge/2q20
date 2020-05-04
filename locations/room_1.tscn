@@ -300,10 +300,14 @@ shape = SubResource( 17 )
 
 [node name="monitor" parent="container" instance=ExtResource( 6 )]
 position = Vector2( -273, 85 )
+frame = 2
 offset = Vector2( 0, -73.013 )
 
 [node name="entered" parent="." instance=ExtResource( 7 )]
 text = [ "Today someone dropped me a note. It says that I’m being invited on meeting at the crypt of local cemetery tonight.", "That’s weird, people are locking up home on a day like these.", "I don't have any friends at school, and nobody cares about me", "I often visit our school counselor after my parents' death. Maybe that's why my classmates avoiding me.", "I'm not afraid to go to the cemetery, I don't care what happens to me.", "My school counselor told me to write my thoughts down in the notebook. I don't see a point ... I tried to make notes in the phone, but then I got used to say them out loud.", "Miss Rasper told me to overcome parents' loss I need to make new friends", "Huh, seems like everybody avoiding me even more after her advice" ]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.909804, 0.909804, 0.909804, 1 )
 [connection signal="triggered" from="Door" to="Door/trigger_handler" method="_on_triggered"]
 [connection signal="triggered" from="Poster" to="Poster/Node" method="_on_triggered"]
 [connection signal="triggered" from="Poster2" to="Poster2/Node" method="_on_triggered"]

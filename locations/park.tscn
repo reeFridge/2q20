@@ -47,13 +47,13 @@ position = Vector2( 478.914, 0 )
 position = Vector2( -479.259, 0 )
 
 [node name="spawn" parent="." index="4"]
-position = Vector2( -396.593, 129.01 )
+position = Vector2( -355.428, 137.096 )
 
 [node name="direction" type="Position2D" parent="spawn" index="0"]
 position = Vector2( 122.026, 0 )
 
 [node name="from_graveyard" type="Position2D" parent="." index="5"]
-position = Vector2( 392.539, 110.264 )
+position = Vector2( 342.553, 110.264 )
 
 [node name="direction" type="Position2D" parent="from_graveyard" index="0"]
 position = Vector2( -136.727, 0 )
@@ -104,11 +104,11 @@ collision_layer = 2
 shape = SubResource( 3 )
 
 [node name="to_graveyard" parent="." index="10" instance=ExtResource( 5 )]
-position = Vector2( 466.471, 82.7356 )
+position = Vector2( 438.537, 95.2322 )
 target_scene = 4
 
 [node name="transition_area" parent="." index="11" instance=ExtResource( 5 )]
-position = Vector2( -468.752, 82.223 )
+position = Vector2( -440.083, 91.7792 )
 target_scene = 2
 target_spawn = "from_park"
 

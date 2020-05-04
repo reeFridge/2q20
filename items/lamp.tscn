@@ -14,5 +14,4 @@ animations = [ {
 
 [node name="lamp" type="AnimatedSprite"]
 frames = SubResource( 1 )
-frame = 2
 playing = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=2]
@@ -89,6 +89,9 @@ extents = Vector2( 2.89873, 6.85153 )
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 47.0988, 24.7074 )
 
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 9.70029, 8.75926 )
+
 [sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 52.4664, 13.8201 )
 
@@ -163,7 +166,6 @@ scene_index = 2
 [node name="clock" type="AnimatedSprite" parent="." index="11"]
 position = Vector2( 189.738, -106.147 )
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="clock" index="0"]
@@ -352,7 +354,16 @@ shape = SubResource( 22 )
 script = ExtResource( 5 )
 text = "When my parents had died, I broke the TV screen, never liked its sound."
 
-[node name="near_door_reply" parent="." index="29" instance=ExtResource( 13 )]
+[node name="food" parent="." index="29" instance=ExtResource( 1 )]
+position = Vector2( -175.083, 71.4085 )
+text = "food"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="food" index="0"]
+shape = SubResource( 26 )
+script = ExtResource( 5 )
+text = "My aunt cooked a dinner, and now she looks after me. Been looking, to be exact. After I saw my parents dead, I can’t eat meat; It makes me vomit, so aunt cook ... used to cook vegetables only"
+
+[node name="near_door_reply" parent="." index="30" instance=ExtResource( 13 )]
 position = Vector2( -259.677, 23.4988 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="near_door_reply" index="0"]
@@ -365,3 +376,4 @@ shape = SubResource( 25 )
 [connection signal="triggered" from="gramophone" to="gramophone/Node" method="_on_triggered"]
 [connection signal="triggered" from="board" to="board/Node" method="_on_triggered"]
 [connection signal="triggered" from="TV" to="TV/Node" method="_on_triggered"]
+[connection signal="triggered" from="food" to="food/CollisionShape2D" method="_on_triggered"]

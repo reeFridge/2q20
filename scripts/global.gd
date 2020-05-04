@@ -10,11 +10,14 @@ enum GameState {
 var game_state = GameState.None
 
 var scenes = [
-	preload("res://locations/room_1.tscn").instance(),
-	preload("res://locations/room_2.tscn").instance(),
-	preload("res://locations/street.tscn").instance(),
-	preload("res://locations/park.tscn").instance(),
-	preload("res://locations/graveyard.tscn").instance()
+	preload("res://locations/room_1.tscn").instance(),		#0
+	preload("res://locations/room_2.tscn").instance(),		#1
+	preload("res://locations/street.tscn").instance(),		#2
+	preload("res://locations/park.tscn").instance(),		#3
+	preload("res://locations/graveyard.tscn").instance(),	#4
+	preload("res://locations/crypt_1.tscn").instance(),		#5
+	preload("res://locations/crypt_2.tscn").instance(),		#6
+	preload("res://locations/lab.tscn").instance()			#7
 ]
 
 onready var main = get_tree().get_root().get_node("main")
@@ -24,7 +27,6 @@ func notify_every_activable(instance):
 
 func _ready():
 	print("global loaded")
-	#change_scene(0)
 	
 func get_player():
 	return main.get_player()

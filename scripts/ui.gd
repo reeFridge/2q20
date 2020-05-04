@@ -92,7 +92,7 @@ func _on_start_pressed():
 	$menu.hide()
 	$menu/buttons/start.text = "continue"
 	if Global.game_state == Global.GameState.None:
-		Global.change_scene(0)
+		Global.change_scene(4)
 	Global.game_state = Global.GameState.Play
 
 func _on_about_pressed():

@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://locations/transition_area.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/graveyard.png" type="Texture" id=3]
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/common_reply.gd" type="Script" id=5]
+[ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=6]
+[ext_resource path="res://items/torch.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22.1832, 32.9904 )
@@ -29,6 +31,9 @@ extents = Vector2( 18.995, 12.5089 )
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 20.8101, 16.9503 )
 
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 40, 58 )
+
 [node name="Node2D" instance=ExtResource( 1 )]
 
 [node name="max_top" parent="." index="0"]
@@ -43,139 +48,145 @@ position = Vector2( 433, 0 )
 [node name="max_left" parent="." index="3"]
 position = Vector2( -478, 0 )
 
-[node name="spawn" parent="." index="4"]
-position = Vector2( -403, 84 )
+[node name="from_crypt" type="Position2D" parent="." index="4"]
+position = Vector2( 330, 51 )
+
+[node name="direction" type="Position2D" parent="from_crypt" index="0"]
+position = Vector2( -95, 0 )
+
+[node name="spawn" parent="." index="5"]
+position = Vector2( -359, 84 )
 
 [node name="direction" type="Position2D" parent="spawn" index="0"]
 position = Vector2( 127, 0 )
 
-[node name="cam" parent="." index="5"]
+[node name="cam" parent="." index="6"]
 limit_left = -450
 limit_top = -600
 limit_right = 450
 limit_bottom = 166
 
-[node name="graveyard" type="Sprite" parent="." index="6"]
+[node name="graveyard" type="Sprite" parent="." index="7"]
 texture = ExtResource( 3 )
 
-[node name="to_park" parent="." index="7" instance=ExtResource( 2 )]
-position = Vector2( -467, 82 )
+[node name="to_park" parent="." index="8" instance=ExtResource( 2 )]
+position = Vector2( -437, 82 )
 target_scene = 3
 target_spawn = "from_graveyard"
 
-[node name="tomb" parent="." index="8" instance=ExtResource( 4 )]
+[node name="tomb" parent="." index="9" instance=ExtResource( 4 )]
 position = Vector2( -318.819, -9.47914 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb" index="0"]
 shape = SubResource( 1 )
 
-[node name="tomb2" parent="." index="9" instance=ExtResource( 4 )]
+[node name="tomb2" parent="." index="10" instance=ExtResource( 4 )]
 position = Vector2( -202.215, -14.5983 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb2" index="0"]
 shape = SubResource( 1 )
 
-[node name="tomb3" parent="." index="10" instance=ExtResource( 4 )]
+[node name="tomb3" parent="." index="11" instance=ExtResource( 4 )]
 position = Vector2( -442.249, -24.2679 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb3" index="0"]
 shape = SubResource( 1 )
 
-[node name="tomb4" parent="." index="11" instance=ExtResource( 4 )]
+[node name="tomb4" parent="." index="12" instance=ExtResource( 4 )]
 position = Vector2( 98.6801, -27.112 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb4" index="0"]
 shape = SubResource( 1 )
 
-[node name="tomb7" parent="." index="12" instance=ExtResource( 4 )]
+[node name="tomb7" parent="." index="13" instance=ExtResource( 4 )]
 position = Vector2( -89.5487, -53.2714 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb7" index="0"]
 shape = SubResource( 2 )
 
-[node name="tomb8" parent="." index="13" instance=ExtResource( 4 )]
+[node name="tomb8" parent="." index="14" instance=ExtResource( 4 )]
 position = Vector2( -19.3609, -92.5162 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb8" index="0"]
 shape = SubResource( 2 )
 
-[node name="tomb9" parent="." index="14" instance=ExtResource( 4 )]
+[node name="tomb9" parent="." index="15" instance=ExtResource( 4 )]
 position = Vector2( 143.094, -80.7547 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb9" index="0"]
 shape = SubResource( 3 )
 
-[node name="tomb10" parent="." index="15" instance=ExtResource( 4 )]
+[node name="tomb10" parent="." index="16" instance=ExtResource( 4 )]
 position = Vector2( 225.425, -91.046 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb10" index="0"]
 shape = SubResource( 3 )
 
-[node name="tomb11" parent="." index="16" instance=ExtResource( 4 )]
+[node name="tomb11" parent="." index="17" instance=ExtResource( 4 )]
 position = Vector2( 76.201, -102.072 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb11" index="0"]
 shape = SubResource( 3 )
 
-[node name="tomb12" parent="." index="17" instance=ExtResource( 4 )]
+[node name="tomb12" parent="." index="18" instance=ExtResource( 4 )]
 position = Vector2( -151.677, -96.9268 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb12" index="0"]
 shape = SubResource( 3 )
 
-[node name="tomb13" parent="." index="18" instance=ExtResource( 4 )]
+[node name="tomb13" parent="." index="19" instance=ExtResource( 4 )]
 position = Vector2( -258.266, -96.1917 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb13" index="0"]
 shape = SubResource( 3 )
 
-[node name="tomb14" parent="." index="19" instance=ExtResource( 4 )]
+[node name="tomb14" parent="." index="20" instance=ExtResource( 4 )]
 position = Vector2( -379.556, -69.7283 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb14" index="0"]
 shape = SubResource( 4 )
 
-[node name="tomb5" parent="." index="20" instance=ExtResource( 4 )]
+[node name="tomb5" parent="." index="21" instance=ExtResource( 4 )]
 position = Vector2( 199.358, 0.190453 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb5" index="0"]
 shape = SubResource( 5 )
 
-[node name="tomb6" parent="." index="21" instance=ExtResource( 4 )]
+[node name="tomb6" parent="." index="22" instance=ExtResource( 4 )]
 position = Vector2( 10.9463, -3.79008 )
 text = "tomb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tomb6" index="0"]
 shape = SubResource( 5 )
 
-[node name="rose" parent="." index="22" instance=ExtResource( 4 )]
+[node name="rose" parent="." index="23" instance=ExtResource( 4 )]
 position = Vector2( -92.0988, -9.81805 )
 text = "rose"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rose" index="0"]
 shape = SubResource( 6 )
 
-[node name="pit" parent="." index="23" instance=ExtResource( 4 )]
+[node name="pit" parent="." index="24" instance=ExtResource( 4 )]
 position = Vector2( -380.192, -28.1088 )
 text = "pit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pit" index="0"]
 shape = SubResource( 7 )
 
-[node name="binge" parent="." index="24" instance=ExtResource( 4 )]
+[node name="binge" parent="." index="25" instance=ExtResource( 4 )]
 position = Vector2( 279.529, 30.0865 )
 text = "binge"
 
@@ -185,4 +196,24 @@ shape = SubResource( 8 )
 [node name="Node" type="Node" parent="binge" index="1"]
 script = ExtResource( 5 )
 text = "Hmm… Maybe this person is the one who invited me?"
+
+[node name="crypt_door" parent="." index="26" instance=ExtResource( 4 )]
+position = Vector2( 331, 8 )
+text = "crypt door"
+distance_to_activate = 60
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crypt_door" index="0"]
+position = Vector2( 0, -60 )
+shape = SubResource( 9 )
+script = ExtResource( 6 )
+scene_index = 5
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="27"]
+color = Color( 0.776471, 0.776471, 0.776471, 1 )
+
+[node name="torch" parent="." index="28" instance=ExtResource( 7 )]
+position = Vector2( 330, -127 )
+scale = Vector2( 0.325138, 0.325138 )
+frame = 0
 [connection signal="triggered" from="binge" to="binge/Node" method="_on_triggered"]
+[connection signal="triggered" from="crypt_door" to="crypt_door/CollisionShape2D" method="_on_triggered"]

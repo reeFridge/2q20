@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/street.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://locations/transition_area.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/sprites/vetka.png" type="Texture" id=7]
 [ext_resource path="res://scripts/common_reply.gd" type="Script" id=8]
+[ext_resource path="res://assets/sprites/light_atlas.jpeg" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/light.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 60.2733, 57.0153 )
@@ -52,7 +54,7 @@ position = Vector2( -189.738, 33.171 )
 position = Vector2( 109.464, 0 )
 
 [node name="from_park" type="Position2D" parent="." index="5"]
-position = Vector2( 318.442, 52.4102 )
+position = Vector2( 279.964, 52.4102 )
 
 [node name="direction" type="Position2D" parent="from_park" index="0"]
 position = Vector2( -69.6592, 0 )
@@ -67,7 +69,7 @@ limit_bottom = 167
 texture = ExtResource( 2 )
 
 [node name="transition_area" parent="." index="8" instance=ExtResource( 6 )]
-position = Vector2( 367.535, 49.7565 )
+position = Vector2( 338.736, 50.2442 )
 target_scene = 3
 
 [node name="fence" type="Sprite" parent="." index="9"]
@@ -75,12 +77,7 @@ position = Vector2( -126.363, 83.6145 )
 z_index = 1
 texture = ExtResource( 3 )
 
-[node name="vetka" type="Sprite" parent="." index="10"]
-position = Vector2( -315.823, -59.3334 )
-z_index = 2
-texture = ExtResource( 7 )
-
-[node name="swing" parent="." index="11" instance=ExtResource( 4 )]
+[node name="swing" parent="." index="10" instance=ExtResource( 4 )]
 position = Vector2( 127.58, -106.961 )
 text = "swing"
 
@@ -91,28 +88,28 @@ shape = SubResource( 1 )
 script = ExtResource( 8 )
 text = "Father didn’t have time to repair the swing."
 
-[node name="broken window" parent="." index="12" instance=ExtResource( 4 )]
+[node name="broken window" parent="." index="11" instance=ExtResource( 4 )]
 position = Vector2( -99.9638, -60.3134 )
 text = "broken window"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="broken window" index="0"]
 shape = SubResource( 2 )
 
-[node name="broken window2" parent="." index="13" instance=ExtResource( 4 )]
+[node name="broken window2" parent="." index="12" instance=ExtResource( 4 )]
 position = Vector2( -276.385, -59.5783 )
 text = "broken window"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="broken window2" index="0"]
 shape = SubResource( 3 )
 
-[node name="lamp" parent="." index="14" instance=ExtResource( 4 )]
+[node name="lantern" parent="." index="13" instance=ExtResource( 4 )]
 position = Vector2( 278.349, -83.5998 )
-text = "lamp"
+text = "lantern"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="lamp" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lantern" index="0"]
 shape = SubResource( 4 )
 
-[node name="binge" parent="." index="15" instance=ExtResource( 4 )]
+[node name="binge" parent="." index="14" instance=ExtResource( 4 )]
 position = Vector2( -19.3268, 7.24331 )
 text = "binge"
 
@@ -123,7 +120,7 @@ shape = SubResource( 5 )
 script = ExtResource( 8 )
 text = "When I feel bad - I sit here and drink my parent’s supplies."
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="16"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="15"]
 position = Vector2( 71.6494, 0 )
 collision_layer = 2
 
@@ -131,7 +128,7 @@ collision_layer = 2
 position = Vector2( 9.95135, 0 )
 shape = SubResource( 6 )
 
-[node name="home_door" parent="." index="17" instance=ExtResource( 4 )]
+[node name="home_door" parent="." index="16" instance=ExtResource( 4 )]
 position = Vector2( -191.345, 13.6646 )
 text = "home"
 distance_to_activate = 50
@@ -144,6 +141,35 @@ shape = SubResource( 7 )
 script = ExtResource( 5 )
 scene_index = 1
 scene_spawn = "from_street"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="17"]
+color = Color( 0.588235, 0.588235, 0.588235, 1 )
+
+[node name="lantern_light" type="Light2D" parent="." index="18"]
+position = Vector2( 282.498, 36.088 )
+texture = ExtResource( 9 )
+texture_scale = 2.02
+color = Color( 1, 0.815686, 0.705882, 0.564706 )
+energy = 1.23
+range_height = 361.4
+
+[node name="window_light" type="Light2D" parent="." index="19"]
+position = Vector2( -99.4857, -59.984 )
+texture = ExtResource( 10 )
+color = Color( 0.886275, 0.941176, 0.243137, 0.717647 )
+energy = 0.85
+
+[node name="window_light2" type="Light2D" parent="." index="20"]
+position = Vector2( -277.975, -59.984 )
+texture = ExtResource( 10 )
+color = Color( 0.886275, 0.941176, 0.243137, 0.67451 )
+energy = 0.85
+range_z_max = 1
+
+[node name="vetka" type="Sprite" parent="." index="21"]
+position = Vector2( -315.823, -59.3334 )
+z_index = 2
+texture = ExtResource( 7 )
 [connection signal="triggered" from="swing" to="swing/Node" method="_on_triggered"]
 [connection signal="triggered" from="binge" to="binge/Node" method="_on_triggered"]
 [connection signal="triggered" from="home_door" to="home_door/trigger_handler" method="_on_triggered"]
