@@ -48,7 +48,7 @@ extents = Vector2( 20.8101, 16.9503 )
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 40, 58 )
 
-[sub_resource type="SpriteFrames" id=28]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
 "frames": [ ExtResource( 19 ), ExtResource( 18 ), ExtResource( 20 ), ExtResource( 21 ) ],
 "loop": true,
@@ -56,7 +56,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=11]
 resource_name = "walk"
 length = 10.0
 tracks/0/type = "value"
@@ -84,7 +84,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="SpriteFrames" id=26]
+[sub_resource type="SpriteFrames" id=12]
 animations = [ {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
@@ -92,7 +92,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=13]
 resource_name = "walk"
 length = 10.0
 tracks/0/type = "value"
@@ -120,7 +120,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 10, 66 )
 
 [node name="Node2D" instance=ExtResource( 1 )]
@@ -324,16 +324,17 @@ text = [ "We're finally here ...", "What's with this crypt? Why is it opened?", 
 episode_mask = 2
 
 [node name="thing" type="Node2D" parent="." index="32"]
-visible = false
-position = Vector2( 334, -2 )
+position = Vector2( -222, 46 )
 script = ExtResource( 17 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="thing" index="0"]
-frames = SubResource( 28 )
+frames = SubResource( 10 )
 animation = "walk"
+frame = 1
+playing = true
 
 [node name="anim" type="AnimationPlayer" parent="thing" index="1"]
-anims/walk = SubResource( 29 )
+anims/walk = SubResource( 11 )
 
 [node name="ghost" type="Node2D" parent="." index="33"]
 visible = false
@@ -342,12 +343,12 @@ script = ExtResource( 12 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="ghost" index="0"]
 position = Vector2( 155, 11 )
-frames = SubResource( 26 )
+frames = SubResource( 12 )
 frame = 2
 playing = true
 
 [node name="anim" type="AnimationPlayer" parent="ghost" index="1"]
-anims/walk = SubResource( 27 )
+anims/walk = SubResource( 13 )
 
 [node name="crypt_reply" type="Area2D" parent="." index="34"]
 position = Vector2( 83, 94 )
@@ -356,7 +357,7 @@ script = ExtResource( 11 )
 texts = [ "This crypt is really an ancient one", "Who in the world would build it in our town?", "I'm scared to enter it for some reasons", "Who and for what invited me here?", "If someone would see me talking to myself, they'll think I'm crazy", "He-he, they'll think" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="crypt_reply" index="0"]
-shape = SubResource( 10 )
+shape = SubResource( 14 )
 
 [node name="crypt_door_reply" type="Area2D" parent="." index="35"]
 position = Vector2( 248, 94 )
@@ -365,7 +366,7 @@ script = ExtResource( 11 )
 texts = [ "I see this door opened for the first time", "Cold air blows out of it" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="crypt_door_reply" index="0"]
-shape = SubResource( 10 )
+shape = SubResource( 14 )
 [connection signal="before_enter" from="." to="graveyard" method="before_enter"]
 [connection signal="entered" from="." to="thing" method="enter"]
 [connection signal="entered" from="." to="ghost" method="enter"]

@@ -16,42 +16,42 @@
 [ext_resource path="res://assets/sprites/bubble-6.png" type="Texture" id=14]
 [ext_resource path="res://assets/sprites/bubble-5.png" type="Texture" id=15]
 
-[sub_resource type="RectangleShape2D" id=13]
-
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 104.157, 18.5758 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 47.8817, 80.8972 )
+extents = Vector2( 104.157, 18.5758 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 64.4705, 10 )
+extents = Vector2( 47.8817, 80.8972 )
 
 [sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 64.4705, 10 )
+
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 89.6804, 15.7737 )
 
-[sub_resource type="CapsuleShape2D" id=5]
+[sub_resource type="CapsuleShape2D" id=6]
 radius = 20.051
 height = 43.7262
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 25.359, 10 )
 
-[sub_resource type="RectangleShape2D" id=7]
-
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 46.0727, 23.3208 )
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 33.1603, 10 )
+extents = Vector2( 46.0727, 23.3208 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 10, 27.3024 )
+extents = Vector2( 33.1603, 10 )
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 12.6795, 10 )
+extents = Vector2( 10, 27.3024 )
 
 [sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 12.6795, 10 )
+
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 91.0078, 11.9747 )
 
 [sub_resource type="RectangleShape2D" id=14]
@@ -134,7 +134,7 @@ inventory_texture = ExtResource( 6 )
 texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="syringe" index="1"]
-shape = SubResource( 13 )
+shape = SubResource( 1 )
 script = ExtResource( 7 )
 
 [node name="container" type="YSort" parent="." index="9"]
@@ -149,7 +149,7 @@ position = Vector2( 0, -13.9318 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="container/lab-table/StaticBody2D" index="0"]
 position = Vector2( 0, 22.5563 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="door" parent="." index="10" instance=ExtResource( 3 )]
 position = Vector2( -314.953, -42.9104 )
@@ -157,40 +157,40 @@ text = "metal door"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="door" index="0"]
 position = Vector2( 0, 4.91095 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="11"]
 position = Vector2( -93.5423, 51.7468 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." index="12"]
 position = Vector2( 340.998, 52.4102 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="0"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." index="13"]
 position = Vector2( -364.218, 124.06 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" index="0"]
 rotation = 1.5708
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="test tube" parent="." index="14" instance=ExtResource( 3 )]
 position = Vector2( 314.333, -6.94432 )
 text = "test tube"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="test tube" index="0"]
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="bottle with eyes" parent="." index="15" instance=ExtResource( 3 )]
 position = Vector2( 274.454, -8.70717 )
 text = "bottle with eyes"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottle with eyes" index="0"]
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="Node" type="Node" parent="bottle with eyes" index="1"]
 script = ExtResource( 5 )
@@ -201,14 +201,14 @@ position = Vector2( -170.589, -81.2209 )
 text = "figurines"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="figurines" index="0"]
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="weapons" parent="." index="17" instance=ExtResource( 3 )]
 position = Vector2( -115.586, 1.10751 )
 text = "weapons"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="weapons" index="0"]
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 
 [node name="Node" type="Node" parent="weapons" index="1"]
 script = ExtResource( 5 )
@@ -219,21 +219,21 @@ position = Vector2( -71.6179, -125.587 )
 text = "noose"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="noose" index="0"]
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 
 [node name="knife" parent="." index="19" instance=ExtResource( 3 )]
 position = Vector2( 410.405, -1.09224 )
 text = "knife"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="knife" index="0"]
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 
 [node name="dead body" parent="." index="20" instance=ExtResource( 3 )]
 position = Vector2( 118.098, 90.2273 )
 text = "dead body"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dead body" index="0"]
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="Node" type="Node" parent="dead body" index="1"]
 script = ExtResource( 5 )
@@ -251,7 +251,6 @@ script = ExtResource( 5 )
 text = "Acid is so entertaining.. People just get lost in it.."
 
 [node name="aquarium" parent="." index="22" instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 110.791, -55.0638 )
 text = "aquarium"
 
