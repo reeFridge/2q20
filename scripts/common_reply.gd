@@ -9,3 +9,4 @@ func _on_triggered():
 	else:
 		Global.show_text_series(texts)
 	get_parent().close_actions_menu()
+

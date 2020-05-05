@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/lab.png" type="Texture" id=2]
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sprites/lab-table.png" type="Texture" id=4]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 104.157, 18.5758 )
+[ext_resource path="res://scripts/common_reply.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 104.157, 18.5758 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 47.8817, 80.8972 )
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -20,6 +21,35 @@ extents = Vector2( 89.6804, 15.7737 )
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 20.051
 height = 43.7262
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 25.359, 10 )
+
+[sub_resource type="RectangleShape2D" id=8]
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 46.0727, 23.3208 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 33.1603, 10 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 10, 27.3024 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 12.6795, 10 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 91.0078, 11.9747 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 42.4174, 26.1725 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 111.246, 61.2577 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 12.1919, 10 )
 
 [node name="Node2D" instance=ExtResource( 1 )]
 player_container = "container"
@@ -59,7 +89,7 @@ position = Vector2( 0, -13.9318 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="container/lab-table/StaticBody2D" index="0"]
 position = Vector2( 0, 22.5563 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="door" parent="." index="8" instance=ExtResource( 3 )]
 position = Vector2( -314.953, -42.9104 )
@@ -67,7 +97,7 @@ text = "metal door"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="door" index="0"]
 position = Vector2( 0, 4.91095 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
 position = Vector2( -93.5423, 51.7468 )
@@ -87,3 +117,92 @@ position = Vector2( -364.218, 124.06 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" index="0"]
 rotation = 1.5708
 shape = SubResource( 5 )
+
+[node name="test tube" parent="." index="12" instance=ExtResource( 3 )]
+position = Vector2( 314.333, -6.94432 )
+text = "test tube"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="test tube" index="0"]
+shape = SubResource( 7 )
+
+[node name="bottle with eyes" parent="." index="13" instance=ExtResource( 3 )]
+position = Vector2( 274.454, -8.70717 )
+text = "bottle with eyes"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottle with eyes" index="0"]
+shape = SubResource( 8 )
+
+[node name="Node" type="Node" parent="bottle with eyes" index="1"]
+script = ExtResource( 5 )
+text = "they.. they said.. they didn't want to be friends.."
+
+[node name="figurines" parent="." index="14" instance=ExtResource( 3 )]
+position = Vector2( -170.589, -81.2209 )
+text = "figurines"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="figurines" index="0"]
+shape = SubResource( 9 )
+
+[node name="weapons" parent="." index="15" instance=ExtResource( 3 )]
+position = Vector2( -115.586, 1.10751 )
+text = "weapons"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapons" index="0"]
+shape = SubResource( 6 )
+
+[node name="Node" type="Node" parent="weapons" index="1"]
+script = ExtResource( 5 )
+text = "Ha ha."
+
+[node name="noose" parent="." index="16" instance=ExtResource( 3 )]
+position = Vector2( -71.6179, -125.587 )
+text = "noose"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="noose" index="0"]
+shape = SubResource( 10 )
+
+[node name="knife" parent="." index="17" instance=ExtResource( 3 )]
+position = Vector2( 410.405, -1.09224 )
+text = "knife"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="knife" index="0"]
+shape = SubResource( 11 )
+
+[node name="dead body" parent="." index="18" instance=ExtResource( 3 )]
+position = Vector2( 118.098, 90.2273 )
+text = "dead body"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dead body" index="0"]
+shape = SubResource( 12 )
+
+[node name="Node" type="Node" parent="dead body" index="1"]
+script = ExtResource( 5 )
+text = " I was wondering what’s inside.. he started first.."
+
+[node name="basin" parent="." index="19" instance=ExtResource( 3 )]
+position = Vector2( -363.98, 131.212 )
+text = "basin"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="basin" index="0"]
+shape = SubResource( 14 )
+
+[node name="Node" type="Node" parent="basin" index="1"]
+script = ExtResource( 5 )
+text = "Acid is so entertaining.. People just get lost in it.."
+
+[node name="aquarium" parent="." index="20" instance=ExtResource( 3 )]
+position = Vector2( 110.791, -55.0638 )
+text = "aquarium"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="aquarium" index="0"]
+shape = SubResource( 15 )
+
+[node name="hand" parent="." index="21" instance=ExtResource( 3 )]
+position = Vector2( 373.342, -2.55525 )
+text = "hand"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hand" index="0"]
+shape = SubResource( 13 )
+[connection signal="triggered" from="bottle with eyes" to="bottle with eyes/Node" method="_on_triggered"]
+[connection signal="triggered" from="weapons" to="weapons/Node" method="_on_triggered"]
+[connection signal="triggered" from="dead body" to="dead body/Node" method="_on_triggered"]

@@ -300,7 +300,7 @@ shape = SubResource( 17 )
 
 [node name="monitor" parent="container" instance=ExtResource( 6 )]
 position = Vector2( -273, 85 )
-frame = 2
+frame = 3
 offset = Vector2( 0, -73.013 )
 
 [node name="entered1" parent="." instance=ExtResource( 7 )]
