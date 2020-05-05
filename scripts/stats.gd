@@ -6,6 +6,7 @@ const MAX_MENTAL = 100.0
 var mental = MAX_MENTAL
 var interval = 7 * 1000
 var last_update = 0
+var episode = 0
 
 func _process(delta):
 	if Global.game_state == Global.GameState.Play:

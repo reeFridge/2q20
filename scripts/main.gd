@@ -31,7 +31,7 @@ func set_scene(scene, spawn_name):
 	glitch()
 
 	scene.spawn_name = spawn_name
-	$ui.text_timeout()
+	$ui.text_timeout(false)
 
 	if current_scene == null:
 		next_scene = scene
@@ -50,6 +50,7 @@ func perform_transition():
 	if current_scene != null:
 		current_scene.leave()
 		remove_child(current_scene)
+	next_scene.before_enter()
 	add_child(next_scene)
 	next_scene.call_deferred("enter", player)
 	current_scene = next_scene

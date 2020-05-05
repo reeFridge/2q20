@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://locations/transition_area.tscn" type="PackedScene" id=2]
@@ -7,6 +7,20 @@
 [ext_resource path="res://scripts/common_reply.gd" type="Script" id=5]
 [ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=6]
 [ext_resource path="res://items/torch.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sprites/kladbon-blood.png" type="Texture" id=8]
+[ext_resource path="res://scripts/bg.gd" type="Script" id=9]
+[ext_resource path="res://scripts/on_enter.gd" type="Script" id=10]
+[ext_resource path="res://scripts/reply_trigger.gd" type="Script" id=11]
+[ext_resource path="res://episodes/ep1/dialog_handler.gd" type="Script" id=12]
+[ext_resource path="res://assets/sprites/ghost-0.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/ghost-1.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/ghost-2.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/ghost-3.png" type="Texture" id=16]
+[ext_resource path="res://episodes/ep2/dialog_handler.gd" type="Script" id=17]
+[ext_resource path="res://assets/sprites/hand-2.png" type="Texture" id=18]
+[ext_resource path="res://assets/sprites/hand-1.png" type="Texture" id=19]
+[ext_resource path="res://assets/sprites/hand-3.png" type="Texture" id=20]
+[ext_resource path="res://assets/sprites/hand-4.png" type="Texture" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22.1832, 32.9904 )
@@ -33,6 +47,81 @@ extents = Vector2( 20.8101, 16.9503 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 40, 58 )
+
+[sub_resource type="SpriteFrames" id=28]
+animations = [ {
+"frames": [ ExtResource( 19 ), ExtResource( 18 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=29]
+resource_name = "walk"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 7.7, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -222, 46 ), Vector2( 271, 46 ), Vector2( 334, -2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="SpriteFrames" id=26]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=27]
+resource_name = "walk"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 7, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -385, 21 ), Vector2( 149, 21 ), Vector2( 172, -47 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 10, 66 )
 
 [node name="Node2D" instance=ExtResource( 1 )]
 
@@ -68,11 +157,15 @@ limit_bottom = 166
 
 [node name="graveyard" type="Sprite" parent="." index="7"]
 texture = ExtResource( 3 )
+script = ExtResource( 9 )
+textures = [ ExtResource( 3 ), ExtResource( 8 ) ]
+episode_masks = [ 0, 3 ]
 
 [node name="to_park" parent="." index="8" instance=ExtResource( 2 )]
 position = Vector2( -437, 82 )
 target_scene = 3
 target_spawn = "from_graveyard"
+episode_masks = [ 0, 1 ]
 
 [node name="tomb" parent="." index="9" instance=ExtResource( 4 )]
 position = Vector2( -318.819, -9.47914 )
@@ -214,6 +307,67 @@ color = Color( 0.776471, 0.776471, 0.776471, 1 )
 [node name="torch" parent="." index="28" instance=ExtResource( 7 )]
 position = Vector2( 330, -127 )
 scale = Vector2( 0.325138, 0.325138 )
-frame = 0
+frame = 2
+
+[node name="enter" type="Node" parent="." index="29"]
+script = ExtResource( 10 )
+text = [ "I can't find my parents here, and no one knows where I left them" ]
+
+[node name="enter2" type="Node" parent="." index="30"]
+script = ExtResource( 10 )
+text = [ "Where are you?", "I understood what you want ...", "NO! D'YOU HEAR? NO!", "Why's the crypt opened?", "Someone been here recently, I believe", "Why did you bring me here?", "I need a dose ..." ]
+episode_mask = 1
+
+[node name="enter3" type="Node" parent="." index="31"]
+script = ExtResource( 10 )
+text = [ "We're finally here ...", "What's with this crypt? Why is it opened?", "I didn't even knew one can open it.", "You want us to enter it?", "Well, I wanted to sit around here ... All right, let's go" ]
+episode_mask = 2
+
+[node name="thing" type="Node2D" parent="." index="32"]
+visible = false
+position = Vector2( 334, -2 )
+script = ExtResource( 17 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="thing" index="0"]
+frames = SubResource( 28 )
+animation = "walk"
+
+[node name="anim" type="AnimationPlayer" parent="thing" index="1"]
+anims/walk = SubResource( 29 )
+
+[node name="ghost" type="Node2D" parent="." index="33"]
+visible = false
+position = Vector2( 172, -47 )
+script = ExtResource( 12 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ghost" index="0"]
+position = Vector2( 155, 11 )
+frames = SubResource( 26 )
+frame = 2
+playing = true
+
+[node name="anim" type="AnimationPlayer" parent="ghost" index="1"]
+anims/walk = SubResource( 27 )
+
+[node name="crypt_reply" type="Area2D" parent="." index="34"]
+position = Vector2( 83, 94 )
+collision_layer = 8
+script = ExtResource( 11 )
+texts = [ "This crypt is really an ancient one", "Who in the world would build it in our town?", "I'm scared to enter it for some reasons", "Who and for what invited me here?", "If someone would see me talking to myself, they'll think I'm crazy", "He-he, they'll think" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crypt_reply" index="0"]
+shape = SubResource( 10 )
+
+[node name="crypt_door_reply" type="Area2D" parent="." index="35"]
+position = Vector2( 248, 94 )
+collision_layer = 8
+script = ExtResource( 11 )
+texts = [ "I see this door opened for the first time", "Cold air blows out of it" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crypt_door_reply" index="0"]
+shape = SubResource( 10 )
+[connection signal="before_enter" from="." to="graveyard" method="before_enter"]
+[connection signal="entered" from="." to="thing" method="enter"]
+[connection signal="entered" from="." to="ghost" method="enter"]
 [connection signal="triggered" from="binge" to="binge/Node" method="_on_triggered"]
 [connection signal="triggered" from="crypt_door" to="crypt_door/CollisionShape2D" method="_on_triggered"]

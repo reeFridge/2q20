@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=2]
@@ -13,6 +13,19 @@
 [ext_resource path="res://assets/sprites/knife.png" type="Texture" id=11]
 [ext_resource path="res://assets/sprites/mebel.png" type="Texture" id=12]
 [ext_resource path="res://locations/reply_trigger.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scripts/bg.gd" type="Script" id=14]
+[ext_resource path="res://assets/sprites/room-2-blood.png" type="Texture" id=15]
+[ext_resource path="res://scripts/on_enter.gd" type="Script" id=16]
+[ext_resource path="res://assets/sprites/ghost-0.png" type="Texture" id=17]
+[ext_resource path="res://assets/sprites/ghost-1.png" type="Texture" id=18]
+[ext_resource path="res://assets/sprites/ghost-2.png" type="Texture" id=19]
+[ext_resource path="res://assets/sprites/ghost-3.png" type="Texture" id=20]
+[ext_resource path="res://episodes/ep1/dialog_handler.gd" type="Script" id=21]
+[ext_resource path="res://episodes/ep2/dialog_handler.gd" type="Script" id=22]
+[ext_resource path="res://assets/sprites/hand-2.png" type="Texture" id=23]
+[ext_resource path="res://assets/sprites/hand-1.png" type="Texture" id=24]
+[ext_resource path="res://assets/sprites/hand-3.png" type="Texture" id=25]
+[ext_resource path="res://assets/sprites/hand-4.png" type="Texture" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 124, 12 )
@@ -20,7 +33,7 @@ extents = Vector2( 124, 12 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 40, 70 )
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 6 ) ],
 "loop": true,
@@ -28,11 +41,11 @@ animations = [ {
 "speed": 3.0
 } ]
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 12 )
 region = Rect2( 6, 4, 184, 103 )
 
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 69.2425, 23.9227 )
 
 [sub_resource type="RectangleShape2D" id=6]
@@ -42,58 +55,130 @@ extents = Vector2( 19.2392, 17.2489 )
 atlas = ExtResource( 12 )
 region = Rect2( 346, 23, 235, 79 )
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 114.819, 16.2934 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 7.17841, 6.97502 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 11.9776, 17.5472 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 39.7057, 69.9577 )
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 24.8729, 36.9282 )
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 28.9862, 7.2958 )
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 19.1826, 10 )
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 10.0646, 15.5046 )
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 26.9492, 5.69269 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 19.3224, 12.1694 )
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 6.73407, 6.87069 )
 
-[sub_resource type="RectangleShape2D" id=18]
+[sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 21.3114, 17.1418 )
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 5.53394, 6.32449 )
 
-[sub_resource type="RectangleShape2D" id=20]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 2.89873, 6.85153 )
 
-[sub_resource type="RectangleShape2D" id=21]
-
 [sub_resource type="RectangleShape2D" id=22]
+
+[sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 47.0988, 24.7074 )
 
-[sub_resource type="RectangleShape2D" id=26]
+[sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 9.70029, 8.75926 )
 
 [sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 52.4664, 13.8201 )
+
+[sub_resource type="SpriteFrames" id=26]
+animations = [ {
+"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=27]
+resource_name = "walk"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5.2, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 282.89, -37.5794 ), Vector2( 52.2636, -11.1161 ), Vector2( -276.026, -34.4759 ) ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "walk"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.9, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 301.435, -9.92749 ), Vector2( 93.8487, 3.84693 ), Vector2( -266.237, -1.80499 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="SpriteFrames" id=29]
+animations = [ {
+"frames": [ ExtResource( 24 ), ExtResource( 23 ), ExtResource( 25 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
 
 [node name="Node2D" instance=ExtResource( 4 )]
 player_container = "container"
@@ -124,6 +209,9 @@ limit_bottom = 166
 
 [node name="bg" type="Sprite" parent="." index="6"]
 texture = ExtResource( 3 )
+script = ExtResource( 14 )
+textures = [ ExtResource( 3 ), ExtResource( 15 ) ]
+episode_masks = [ 0, 3 ]
 
 [node name="from_street" type="Position2D" parent="." index="7"]
 position = Vector2( -272.666, 27.8637 )
@@ -158,14 +246,25 @@ distance_to_activate = 50
 [node name="CollisionShape2D" type="CollisionShape2D" parent="street_door" index="0"]
 position = Vector2( 0, -70 )
 shape = SubResource( 2 )
+script = ExtResource( 2 )
+scene_index = 8
+episode_masks = [ 1 ]
 
 [node name="trigger_handler" type="Node" parent="street_door" index="1"]
 script = ExtResource( 2 )
 scene_index = 2
+episode_masks = [ 0, 3 ]
+
+[node name="ep2" type="Node" parent="street_door" index="2"]
+script = ExtResource( 2 )
+scene_index = 2
+episode_masks = [ 2 ]
+inventory_mask = "knife"
 
 [node name="clock" type="AnimatedSprite" parent="." index="11"]
 position = Vector2( 189.738, -106.147 )
-frames = SubResource( 4 )
+frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="clock" index="0"]
@@ -177,13 +276,13 @@ max_distance = 400.0
 
 [node name="table" type="Sprite" parent="container" index="0"]
 position = Vector2( -200.118, 91.2266 )
-texture = SubResource( 5 )
+texture = SubResource( 4 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="container/table" index="0"]
 position = Vector2( -23.8831, 18.3767 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="container/table/StaticBody2D" index="0"]
-shape = SubResource( 23 )
+shape = SubResource( 5 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="container/table" index="1"]
 position = Vector2( 69.6591, 13.2684 )
@@ -199,13 +298,14 @@ offset = Vector2( 0, -20 )
 [node name="StaticBody2D" type="StaticBody2D" parent="container/chair" index="0"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="container/chair/StaticBody2D" index="0"]
-shape = SubResource( 24 )
+shape = SubResource( 8 )
 
 [node name="knife" parent="container" index="2" instance=ExtResource( 1 )]
 position = Vector2( -195.471, 92.6081 )
 text = "knife"
 inventory_text = "equip/unequip"
 distance_to_activate = 70
+episode_masks = [ 2 ]
 inventory_texture = ExtResource( 11 )
 
 [node name="knife" type="Sprite" parent="container/knife" index="0"]
@@ -215,7 +315,7 @@ flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="container/knife" index="1"]
 position = Vector2( 0, -37.6656 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="actions" type="Node" parent="container/knife" index="2"]
 script = ExtResource( 10 )
@@ -225,14 +325,14 @@ position = Vector2( 189.358, -107.491 )
 text = "clock"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="clock2" index="0"]
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 
 [node name="parents_room" parent="." index="14" instance=ExtResource( 1 )]
 position = Vector2( 293.056, -59.7569 )
 text = "parents room"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="parents_room" index="0"]
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 
 [node name="actions" type="Node" parent="parents_room" index="1"]
 script = ExtResource( 5 )
@@ -243,7 +343,7 @@ position = Vector2( -147.101, -75.2983 )
 text = "mirror"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mirror" index="0"]
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 
 [node name="Node" type="Node" parent="Mirror" index="1"]
 script = ExtResource( 5 )
@@ -254,7 +354,7 @@ position = Vector2( 187.161, -41.8183 )
 text = "gramophone"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="gramophone" index="0"]
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="Node" type="Node" parent="gramophone" index="1"]
 script = ExtResource( 5 )
@@ -265,21 +365,21 @@ position = Vector2( 36.0416, -103.921 )
 text = "blood drawing"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blood drawing" index="0"]
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="trash" parent="." index="18" instance=ExtResource( 1 )]
 position = Vector2( -384.267, 9.26015 )
 text = "trash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="trash" index="0"]
-shape = SubResource( 14 )
+shape = SubResource( 15 )
 
 [node name="trash4" parent="." index="19" instance=ExtResource( 1 )]
 position = Vector2( -359.406, 7.21678 )
 text = "valorant "
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="trash4" index="0"]
-shape = SubResource( 14 )
+shape = SubResource( 15 )
 
 [node name="board" parent="." index="20" instance=ExtResource( 1 )]
 position = Vector2( 242.462, 138.435 )
@@ -287,7 +387,7 @@ text = "board"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="board" index="0"]
 rotation = -0.423726
-shape = SubResource( 15 )
+shape = SubResource( 16 )
 
 [node name="Node" type="Node" parent="board" index="1"]
 script = ExtResource( 5 )
@@ -298,28 +398,28 @@ position = Vector2( -204.45, 3.4706 )
 text = "trash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="trash3" index="0"]
-shape = SubResource( 16 )
+shape = SubResource( 17 )
 
 [node name="trash2" parent="." index="22" instance=ExtResource( 1 )]
 position = Vector2( -334.545, 8.23847 )
 text = "trash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="trash2" index="0"]
-shape = SubResource( 14 )
+shape = SubResource( 15 )
 
 [node name="splinter" parent="." index="23" instance=ExtResource( 1 )]
 position = Vector2( -137.03, 8.81951 )
 text = "splinter"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="splinter" index="0"]
-shape = SubResource( 17 )
+shape = SubResource( 18 )
 
 [node name="dried flowers" parent="." index="24" instance=ExtResource( 1 )]
 position = Vector2( -52.9491, 4.79517 )
 text = "dried flowers"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dried flowers" index="0"]
-shape = SubResource( 18 )
+shape = SubResource( 19 )
 
 [node name="photo" parent="." index="25" instance=ExtResource( 1 )]
 position = Vector2( 28.7051, -42.1602 )
@@ -327,28 +427,28 @@ text = "photo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="photo" index="0"]
 position = Vector2( -0.263519, 0.790562 )
-shape = SubResource( 19 )
+shape = SubResource( 20 )
 
 [node name="water bottle" parent="." index="26" instance=ExtResource( 1 )]
 position = Vector2( 12.8939, -42.1602 )
 text = "water bottle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="water bottle" index="0"]
-shape = SubResource( 20 )
+shape = SubResource( 21 )
 
 [node name="comics" parent="." index="27" instance=ExtResource( 1 )]
 position = Vector2( -6.87012, -43.7413 )
 text = "comics"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="comics" index="0"]
-shape = SubResource( 21 )
+shape = SubResource( 22 )
 
 [node name="TV" parent="." index="28" instance=ExtResource( 1 )]
 position = Vector2( 94.7629, -31.6408 )
 text = "TV"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TV" index="0"]
-shape = SubResource( 22 )
+shape = SubResource( 23 )
 
 [node name="Node" type="Node" parent="TV" index="1"]
 script = ExtResource( 5 )
@@ -359,17 +459,65 @@ position = Vector2( -175.083, 71.4085 )
 text = "food"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="food" index="0"]
-shape = SubResource( 26 )
+shape = SubResource( 24 )
 script = ExtResource( 5 )
-text = "My aunt cooked a dinner, and now she looks after me. Been looking, to be exact. After I saw my parents dead, I can’t eat meat; It makes me vomit, so aunt cook ... used to cook vegetables only"
+texts = [ "My aunt cooked a dinner, and now she looks after me.", "Been looking, to be exact. After I saw my parents dead, I can't eat meat; It makes me vomit, so aunt cooks… used to cook vegetables only" ]
 
 [node name="near_door_reply" parent="." index="30" instance=ExtResource( 13 )]
 position = Vector2( -259.677, 23.4988 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="near_door_reply" index="0"]
 shape = SubResource( 25 )
+
+[node name="ghost" type="Node2D" parent="." index="31"]
+visible = false
+position = Vector2( 282.89, -37.5794 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ghost" index="0"]
+frames = SubResource( 26 )
+frame = 3
+playing = true
+flip_h = true
+
+[node name="anim" type="AnimationPlayer" parent="ghost" index="1"]
+anims/walk = SubResource( 27 )
+
+[node name="enter_ep1" type="Node" parent="." index="32"]
+script = ExtResource( 16 )
+text = [ "I'm scared ...", "That's the ... no ...", "You shouldn't have come here!", "WHY ARE YOU HERE?", "BEGONE!" ]
+episode_mask = 1
+
+[node name="enter_ep2" type="Node" parent="." index="33"]
+script = ExtResource( 16 )
+text = [ "Knife is on the table", "SHIT!", "WHAT THE FUCK?!?", "It began ... he looks harmless though ...", "Need a dose.", "What a terrible headache ... it’s worse than the comedown after a bad trip ..." ]
+episode_mask = 2
+
+[node name="dialog_handler" type="Node" parent="." index="34"]
+script = ExtResource( 21 )
+
+[node name="dialog_handler2" type="Node" parent="." index="35"]
+script = ExtResource( 22 )
+
+[node name="thing" type="Node2D" parent="." index="36"]
+visible = false
+position = Vector2( 301.435, -9.92749 )
+
+[node name="anim" type="AnimationPlayer" parent="thing" index="0"]
+anims/walk = SubResource( 28 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="thing" index="1"]
+frames = SubResource( 29 )
+animation = "walk"
+frame = 3
+playing = true
+[connection signal="before_enter" from="." to="dialog_handler2" method="before_enter"]
+[connection signal="before_enter" from="." to="dialog_handler" method="before_enter"]
+[connection signal="before_enter" from="." to="bg" method="before_enter"]
+[connection signal="before_enter" from="." to="container/knife" method="before_enter"]
 [connection signal="triggered" from="room_1_door" to="room_1_door/trigger_handler" method="_on_triggered"]
 [connection signal="triggered" from="street_door" to="street_door/trigger_handler" method="_on_triggered"]
+[connection signal="triggered" from="street_door" to="street_door/CollisionShape2D" method="_on_triggered"]
+[connection signal="triggered" from="street_door" to="street_door/ep2" method="_on_triggered"]
 [connection signal="triggered" from="container/knife" to="container/knife/actions" method="_on_triggered"]
 [connection signal="triggered" from="parents_room" to="parents_room/actions" method="_on_triggered"]
 [connection signal="triggered" from="Mirror" to="Mirror/Node" method="_on_triggered"]

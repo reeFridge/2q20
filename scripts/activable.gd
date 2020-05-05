@@ -5,9 +5,16 @@ signal triggered_from_inventory()
 export var text = "unknown item"
 export var inventory_text = ""
 export var distance_to_activate = -1
+export(Array, int) var episode_masks = []
 export(Texture) var inventory_texture
 var label: Label = null
 var menu = null
+
+func before_enter():
+	if episode_masks.empty() || Stats.episode in episode_masks:
+		show()
+	else:
+		hide()
 
 func _process(delta):
 	if menu:

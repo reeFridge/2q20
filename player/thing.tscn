@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/sprites/hand-2.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/hand-1.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/hand-3.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/hand-4.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=28]
+resource_name = "walk"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.9, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 301.435, -9.92749 ), Vector2( 93.8487, 3.84693 ), Vector2( -266.237, -1.80499 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="SpriteFrames" id=29]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[node name="thing" type="Node2D"]
+visible = false
+position = Vector2( 301.435, -9.92749 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/walk = SubResource( 28 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 29 )
+animation = "walk"

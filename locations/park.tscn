@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/park.png" type="Texture" id=2]
@@ -7,6 +7,15 @@
 [ext_resource path="res://locations/transition_area.tscn" type="PackedScene" id=5]
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/common_reply.gd" type="Script" id=7]
+[ext_resource path="res://assets/sprites/park-blood.png" type="Texture" id=8]
+[ext_resource path="res://scripts/bg.gd" type="Script" id=9]
+[ext_resource path="res://scripts/on_enter.gd" type="Script" id=10]
+[ext_resource path="res://scripts/reply_trigger.gd" type="Script" id=11]
+[ext_resource path="res://episodes/ep1/dialog_handler.gd" type="Script" id=12]
+[ext_resource path="res://assets/sprites/ghost-0.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/ghost-1.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/ghost-2.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/ghost-3.png" type="Texture" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 87.5952, 8.22055 )
@@ -29,6 +38,45 @@ extents = Vector2( 227.898, 19.6622 )
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 26, 126.357 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 10, 84.6306 )
+
+[sub_resource type="SpriteFrames" id=26]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=27]
+resource_name = "walk"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -214.656, 84.7085 ), Vector2( 490.609, 84.7085 ) ]
+}
 
 [node name="Node2D" instance=ExtResource( 1 )]
 player_container = "container"
@@ -66,6 +114,9 @@ limit_bottom = 166
 
 [node name="park" type="Sprite" parent="." index="7"]
 texture = ExtResource( 2 )
+script = ExtResource( 9 )
+textures = [ ExtResource( 2 ), ExtResource( 8 ) ]
+episode_masks = [ 0, 3 ]
 
 [node name="container" type="YSort" parent="." index="8"]
 
@@ -144,4 +195,36 @@ text = "wood"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wood" index="0"]
 shape = SubResource( 7 )
+
+[node name="entered" type="Node" parent="." index="16"]
+script = ExtResource( 10 )
+text = [ "Long time ago I used to play here with other children, but now they don't communicate with me", "I used to walk here with my parents", "What a chilly wind today!", "Maybe I should've dressed warmer", "It’s so quiet outdoors" ]
+
+[node name="entered_ep1" type="Node" parent="." index="17"]
+script = ExtResource( 10 )
+text = [ "Did you just called me?", "I hate you!", "Why did you left me alone?", "WHAT THE ACTUAL FUCK IS GOING ON?!" ]
+episode_mask = 1
+
+[node name="city_reply" type="Area2D" parent="." index="18"]
+position = Vector2( 123.158, 80.0002 )
+script = ExtResource( 11 )
+text = "Our little town is so beautiful tonight!"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="city_reply" index="0"]
+shape = SubResource( 8 )
+
+[node name="ghost" type="Node2D" parent="." index="19"]
+visible = false
+position = Vector2( 490.609, 84.7085 )
+script = ExtResource( 12 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ghost" index="0"]
+frames = SubResource( 26 )
+frame = 1
+playing = true
+
+[node name="anim" type="AnimationPlayer" parent="ghost" index="1"]
+anims/walk = SubResource( 27 )
+[connection signal="before_enter" from="." to="park" method="before_enter"]
+[connection signal="entered" from="." to="ghost" method="enter"]
 [connection signal="triggered" from="bench" to="bench/Node" method="_on_triggered"]

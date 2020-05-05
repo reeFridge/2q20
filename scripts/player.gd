@@ -14,19 +14,19 @@ export var speed = 120
 var current_target = null
 var min_distance_to_target = MIN_DISTANCE
 var direction = Vector2()
+var enabled = true
+var is_player = true
+var knife_equiped = false
+var is_attacking = false
 
 var walk_animation = "walk"
 var stand_animation = "stand"
-
-func copy_state(player):
-	speed = player.speed
-	walk_animation = player.walk_animation
-	stand_animation = player.stand_animation
 
 func set_collision(state):
 	$CollisionShape2D.disabled = !state
 
 func equip_knife(state):
+	knife_equiped = state
 	if state:
 		walk_animation = "knife_walk"
 		stand_animation = "knife_stand"
@@ -39,12 +39,21 @@ func change_target(target):
 	emit_signal("target_changed")
 
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.is_pressed():
-		var target = get_global_mouse_position()
-		if is_vector_inside_zone(target):
-			change_target(target)
+	if event is InputEventMouseButton and event.is_pressed() and enabled:
+		if event.button_index == BUTTON_LEFT:
+			var target = get_global_mouse_position()
+			if is_vector_inside_zone(target):
+				change_target(target)
+		elif event.button_index == BUTTON_RIGHT && knife_equiped:
+			attack()
+			
+func attack():
+#	is_attacking = true
+#	$AnimatedSprite.play("attack")
+	pass
 
 func stop():
+	$AnimatedSprite.play(stand_animation)
 	min_distance_to_target = MIN_DISTANCE
 	direction = Vector2()
 	change_target(null)
@@ -64,6 +73,9 @@ func update_facing():
 		$AnimatedSprite.flip_h = true
 
 func _physics_process(delta):
+	if !enabled:
+		return
+
 	if current_target != null:
 		direction = (current_target - global_position).normalized()
 		var distance = global_position.distance_to(current_target)
@@ -98,7 +110,7 @@ func _physics_process(delta):
 		if !pressedY:
 			direction.y = 0
 
-	if direction.length_squared():
+	if direction.length_squared() && !is_attacking:
 		$AnimatedSprite.play(walk_animation)
 	else:
 		$AnimatedSprite.play(stand_animation)

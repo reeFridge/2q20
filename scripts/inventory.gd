@@ -32,6 +32,13 @@ func remove_item(item):
 		items.remove(item_idx)
 		icons.remove(item_idx)
 	update_placeholder()
+	
+func has_item(item_text):
+	for i in items:
+		if i.text == item_text:
+			return true
+			
+	return false
 
 func item_icon_focused(item):
 	$desc.show()

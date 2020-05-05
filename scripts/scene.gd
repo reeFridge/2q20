@@ -1,6 +1,7 @@
 extends Node2D
 signal entered
 signal leaved
+signal before_enter
 
 var player = null
 var spawn_name = "spawn"
@@ -8,6 +9,9 @@ var entered_timer = null
 export var player_container = ""
 export var fade = false
 onready var cam = $cam
+
+func before_enter():
+	emit_signal("before_enter")
 
 func enter(player_instance):
 	player = player_instance

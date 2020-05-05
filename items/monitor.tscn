@@ -34,7 +34,7 @@ tracks/0/keys = {
 
 [node name="monitor" type="AnimatedSprite"]
 frames = SubResource( 1 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="Light2D" type="Light2D" parent="."]

@@ -1,4 +1,8 @@
 extends CanvasLayer
+signal text_shown(text)
+signal text_queue_free
+
+const START_SCENE_IDX = 0
 
 var text_timer: Timer = null
 
@@ -27,15 +31,23 @@ func show_fading_rect():
 func update_mental():
 	$mental.value = Stats.mental
 
-func show_text(text, timeout):
+func show_text(text, timeout, bbcode = false):
 	$overlay.show()
 	remove_text_timer()
 	$text_panel/anim.stop()
 	$text_panel/anim.play("typing")
 	$text_panel.visible = true
-	$text_panel/text.text = text
+	if bbcode:
+		$text_panel/text.bbcode_enabled = true
+		$text_panel/text.bbcode_text = text
+	else:
+		$text_panel/text.bbcode_enabled = false
+		$text_panel/text.text = text
+		
+	emit_signal("text_shown", text)
+
 	var timer = Timer.new()
-	timer.connect("timeout", self, "text_timeout")
+	timer.connect("timeout", self, "text_timeout", [bbcode])
 	timer.one_shot = true
 	timer.wait_time = timeout
 	timer.autostart = true
@@ -48,13 +60,13 @@ var series_timeout = 10
 
 # series - string[]
 # timeout - number
-func show_text_series(series, timeout):
+func show_text_series(series, timeout, bbcode = false):
 	text_queue = series
 	series_timeout = timeout
-	show_text_from_queue()
+	show_text_from_queue(bbcode)
 
-func show_text_from_queue():
-	show_text(text_queue.pop_front(), series_timeout)
+func show_text_from_queue(bbcode):
+	show_text(text_queue.pop_front(), series_timeout, bbcode)
 
 func remove_text_timer():
 	if text_timer != null:
@@ -67,16 +79,19 @@ func pause_resume_timer(state):
 	if text_timer != null:
 		text_timer.paused = state
 
-func text_timeout():
+func text_timeout(bbcode):
 	remove_text_timer()
 	hide_text()
 	if !text_queue.empty():
-		show_text_from_queue()
+		show_text_from_queue(bbcode)
 	else:
+		emit_signal("text_queue_free")
 		$overlay.hide()
 
 func hide_text():
 	$text_panel/text.percent_visible = 0
+	$text_panel/text.bbcode_enabled = false
+	$text_panel/text.bbcode_text = ""
 	$text_panel/text.text = ""
 	$text_panel.visible = false
 
@@ -86,13 +101,13 @@ func _on_overlay_gui_input(event):
 			$text_panel/anim.stop()
 			$text_panel/text.percent_visible = 1
 		else:
-			text_timeout()
+			text_timeout($text_panel/text.bbcode_enabled)
 
 func _on_start_pressed():
 	$menu.hide()
 	$menu/buttons/start.text = "continue"
 	if Global.game_state == Global.GameState.None:
-		Global.change_scene(4)
+		Global.change_scene(START_SCENE_IDX)
 	Global.game_state = Global.GameState.Play
 
 func _on_about_pressed():

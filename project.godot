@@ -32,6 +32,7 @@ Stats="*res://scripts/stats.gd"
 window/size/width=1200
 window/size/height=666
 window/size/resizable=false
+mouse_cursor/custom_image="res://assets/sprites/cur.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 window/stretch/shrink=2.0

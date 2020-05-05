@@ -17,7 +17,9 @@ var scenes = [
 	preload("res://locations/graveyard.tscn").instance(),	#4
 	preload("res://locations/crypt_1.tscn").instance(),		#5
 	preload("res://locations/crypt_2.tscn").instance(),		#6
-	preload("res://locations/lab.tscn").instance()			#7
+	preload("res://locations/lab.tscn").instance(),			#7
+	preload("res://locations/black.tscn").instance(),		#8
+	preload("res://locations/forest.tscn").instance()		#9
 ]
 
 onready var main = get_tree().get_root().get_node("main")
@@ -31,15 +33,15 @@ func _ready():
 func get_player():
 	return main.get_player()
 	
-func show_text(text):
-	main.get_node("ui").show_text(text, 10)
+func show_text(text, timeout = 10, bbcode = false):
+	main.get_node("ui").show_text(text, timeout, bbcode)
 
-func show_text_series(text_series, timeout = 10):
-	main.get_node("ui").show_text_series(text_series, timeout)
+func show_text_series(text_series, timeout = 10, bbcode = false):
+	main.get_node("ui").show_text_series(text_series, timeout, bbcode)
 	
 func change_scene(scene_index, spawn_name = "spawn"):
-	print("change scene -> ", scene_index)
-	if main:
+	if main && main.next_scene == null:
+		print("change scene -> ", scene_index)
 		main.set_scene(scenes[scene_index], spawn_name)
 
 func take_item(item):

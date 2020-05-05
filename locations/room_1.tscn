@@ -303,8 +303,16 @@ position = Vector2( -273, 85 )
 frame = 2
 offset = Vector2( 0, -73.013 )
 
-[node name="entered" parent="." instance=ExtResource( 7 )]
+[node name="entered1" parent="." instance=ExtResource( 7 )]
 text = [ "Today someone dropped me a note. It says that I’m being invited on meeting at the crypt of local cemetery tonight.", "That’s weird, people are locking up home on a day like these.", "I don't have any friends at school, and nobody cares about me", "I often visit our school counselor after my parents' death. Maybe that's why my classmates avoiding me.", "I'm not afraid to go to the cemetery, I don't care what happens to me.", "My school counselor told me to write my thoughts down in the notebook. I don't see a point ... I tried to make notes in the phone, but then I got used to say them out loud.", "Miss Rasper told me to overcome parents' loss I need to make new friends", "Huh, seems like everybody avoiding me even more after her advice" ]
+
+[node name="entered2" parent="." instance=ExtResource( 7 )]
+text = [ "Have I been dreaming?", "Someone ... has invited me to the cemetery ... I believe ...", "Ouch, my head aches ...", "Where's the note gone?", "Need to find the pills, before I break out." ]
+episode_mask = 1
+
+[node name="entered3" parent="." instance=ExtResource( 7 )]
+text = [ "It's so boring to stay at home ...", "Something strange draws me to sit at the cemetery at night", "I'll drink a little bit, and maybe take something to get high.", "I think it's a bad idea to spend a night at the cemetery", "Need to find the knife." ]
+episode_mask = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.909804, 0.909804, 0.909804, 1 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/crypt-room-1.png" type="Texture" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://items/item.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=6]
 [ext_resource path="res://items/torch.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/common_reply.gd" type="Script" id=8]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 28.1475, 39.7947 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 44 )
@@ -26,7 +30,7 @@ position = Vector2( 1021.89, 0 )
 position = Vector2( -1014.44, 0 )
 
 [node name="spawn" parent="." index="4"]
-position = Vector2( -827.529, 78.3817 )
+position = Vector2( -919.679, 99.2817 )
 
 [node name="direction" type="Position2D" parent="spawn" index="0"]
 position = Vector2( 120.587, 0 )
@@ -43,49 +47,88 @@ texture = ExtResource( 2 )
 script = ExtResource( 3 )
 text = [ "Oh, it’s really damp in here", "There is a draft, thought it’s warmer than outside", "What a familiar yet awful smell", "It is really spacious here", "Maybe, larger than a cemetery itself", "And where should I go?", "Ouch, my head is buzzing like a hive" ]
 
-[node name="transition_area" parent="." index="8" instance=ExtResource( 4 )]
+[node name="enter2" type="Node" parent="." index="8"]
+script = ExtResource( 3 )
+text = [ "I have a feeling that I've been here already", "Everything is so familiar in there", "What's the purpose of this room?" ]
+episode_mask = 1
+
+[node name="enter3" type="Node" parent="." index="9"]
+script = ExtResource( 3 )
+text = [ "Why do I have a feeling that I've been here already?", "Everything is so familiar.", "Hey, where have you gone?", "I'm scared ...", "I'm scared ...", "I'M SCARED!", "Need to be careful ...", "What's in there?" ]
+episode_mask = 2
+
+[node name="gargoyle" parent="." index="10" instance=ExtResource( 5 )]
+position = Vector2( -231.469, -71.7049 )
+text = "gargoyle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gargoyle" index="0"]
+shape = SubResource( 2 )
+script = ExtResource( 8 )
+text = "Why this statue is weeping?"
+
+[node name="transition_area" parent="." index="11" instance=ExtResource( 4 )]
 position = Vector2( -994.171, 86.8073 )
 target_scene = 4
 target_spawn = "from_crypt"
 
-[node name="transition_area2" parent="." index="9" instance=ExtResource( 4 )]
+[node name="transition_area2" parent="." index="12" instance=ExtResource( 4 )]
 position = Vector2( 998.179, 86.8073 )
 target_scene = 5
 
-[node name="crypt_lvl2" parent="." index="10" instance=ExtResource( 5 )]
+[node name="crypt_lvl2" parent="." index="13" instance=ExtResource( 5 )]
 position = Vector2( 654, 8 )
 text = "crypt lvl 2"
 distance_to_activate = 60
+episode_masks = [ 0, 1, 2 ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="crypt_lvl2" index="0"]
 position = Vector2( 0, -44 )
 shape = SubResource( 1 )
 script = ExtResource( 6 )
 scene_index = 6
+episode_masks = [ 0, 1, 2 ]
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." index="11"]
+[node name="crypt_lab" parent="." index="14" instance=ExtResource( 5 )]
+position = Vector2( 654, 8 )
+text = "lab"
+distance_to_activate = 60
+episode_masks = [ 3 ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crypt_lab" index="0"]
+position = Vector2( 0, -44 )
+shape = SubResource( 1 )
+script = ExtResource( 6 )
+scene_index = 7
+episode_masks = [ 3 ]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="15"]
 color = Color( 0.513726, 0.494118, 0.494118, 1 )
 
-[node name="torch" parent="." index="12" instance=ExtResource( 7 )]
+[node name="torch" parent="." index="16" instance=ExtResource( 7 )]
 position = Vector2( -762.801, -74.3 )
-frame = 3
+frame = 2
 
-[node name="torch2" parent="." index="13" instance=ExtResource( 7 )]
+[node name="torch2" parent="." index="17" instance=ExtResource( 7 )]
 position = Vector2( -506.301, -74.3 )
-frame = 3
+frame = 2
 
-[node name="torch3" parent="." index="14" instance=ExtResource( 7 )]
+[node name="torch3" parent="." index="18" instance=ExtResource( 7 )]
 position = Vector2( -94.9508, -74.3 )
-frame = 3
+frame = 2
 
-[node name="torch4" parent="." index="15" instance=ExtResource( 7 )]
+[node name="torch4" parent="." index="19" instance=ExtResource( 7 )]
 position = Vector2( 266.049, -74.3 )
-frame = 3
+frame = 2
 
-[node name="torch5" parent="." index="16" instance=ExtResource( 7 )]
+[node name="torch5" parent="." index="20" instance=ExtResource( 7 )]
 position = Vector2( 519.699, -74.3 )
 frame = 2
 
-[node name="torch6" parent="." index="17" instance=ExtResource( 7 )]
+[node name="torch6" parent="." index="21" instance=ExtResource( 7 )]
 position = Vector2( 810.399, -74.3 )
+frame = 2
+[connection signal="before_enter" from="." to="crypt_lab" method="before_enter"]
+[connection signal="before_enter" from="." to="crypt_lvl2" method="before_enter"]
+[connection signal="triggered" from="gargoyle" to="gargoyle/CollisionShape2D" method="_on_triggered"]
 [connection signal="triggered" from="crypt_lvl2" to="crypt_lvl2/CollisionShape2D" method="_on_triggered"]
+[connection signal="triggered" from="crypt_lab" to="crypt_lab/CollisionShape2D" method="_on_triggered"]

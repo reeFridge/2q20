@@ -1,7 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/crypt-room-2.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/man-2-run-1.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/man-3-run-2.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/man-2-run-4.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/man-2-stand.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/man-3-run-1.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/man-2-run-3.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/man-1-stand.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/man-3-run-4.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/man-2-run-2.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/man-3-stand.png" type="Texture" id=12]
+[ext_resource path="res://scripts/on_enter.gd" type="Script" id=13]
+[ext_resource path="res://scripts/dialog_handler.gd" type="Script" id=14]
+[ext_resource path="res://player/enemy.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "blink"
@@ -20,7 +33,43 @@ tracks/0/keys = {
 "values": [ Color( 0.423529, 0.388235, 0.388235, 1 ), Color( 0.172549, 0.156863, 0.156863, 1 ) ]
 }
 
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "stand",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "stand",
+"speed": 5.0
+} ]
+
 [node name="Node2D" instance=ExtResource( 1 )]
+player_container = "container"
+fade = true
 
 [node name="max_top" parent="." index="0"]
 position = Vector2( 0, 20.9501 )
@@ -35,7 +84,10 @@ position = Vector2( 88.6888, 0 )
 position = Vector2( -337.995, 0 )
 
 [node name="spawn" parent="." index="4"]
-position = Vector2( -266.3, 76.8171 )
+position = Vector2( -266.3, 88.9085 )
+
+[node name="direction" type="Position2D" parent="spawn" index="0"]
+position = Vector2( 89.4954, 0 )
 
 [node name="cam" parent="." index="5"]
 limit_left = -351
@@ -46,7 +98,45 @@ limit_bottom = 166
 texture = ExtResource( 2 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." index="7"]
-color = Color( 0.172549, 0.156863, 0.156863, 1 )
+color = Color( 0.423529, 0.388235, 0.388235, 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+[node name="blinking" type="AnimationPlayer" parent="." index="8"]
 anims/blink = SubResource( 1 )
+
+[node name="guy1" type="AnimatedSprite" parent="." index="9"]
+position = Vector2( 163.716, -26.0642 )
+frames = SubResource( 2 )
+flip_h = true
+
+[node name="enter" type="Node" parent="." index="10"]
+script = ExtResource( 13 )
+text = [ "[color=#80170F]red guy:[/color] So, she made it here, and now we can start.", "[color=#FEF5F2]you:[/color] What? Why did you invited me here?", "[color=#08400F]green guy:[/color] To perform a ritual", "[color=#FEF5F2]you:[/color] What? What ritual?", "[color=#80170F]red guy:[/color] The ritual to endorse the demons and banish this disease from our town.", "[color=#5e2d12]brown guy:[/color] It appeared because of you! You're the first who became ill!", "[color=#FEF5F2]you:[/color] Are you all fucking sick?", "[color=#80170F]red guy:[/color] We're all sick? YOU'RE THE ONLY FUCKING SICK HERE!", "[color=#80170F]red guy:[/color] YOU ARE TALKING TO YOURSELF. SEEING THINGS AND STUFF. THERE'S LOTS OF REASONS THAT IT APPEARED BECAUSE OF YOU AND YOU INFECTED EVERYONE!", "[color=#5e2d12]brown guy:[/color] You don't have anybody to protect you, and we can do whatever we want with you, and no one will notice that you’re missing", "[color=#08400F]green guy:[/color] All right, let's share her already. Stop wasting time", "[color=#FEF5F2]you:[/color] Don't you think that I'm scared! Don’t come any closer!", "[color=#80170F]red guy:[/color] Don't let her kill herself, we shall finish the ritual!" ]
+bbcode = true
+
+[node name="enter2" type="Node" parent="." index="11"]
+script = ExtResource( 13 )
+text = [ "[color=#80170F]red guy:[/color] She made it here after all, and now we can begin", "[color=#FEF5F2]you:[/color] What? Why did you invited me here?", "[color=#08400F]green guy:[/color] To make a rite.", "[color=#FEF5F2]you:[/color] What? What's the rite?", "[color=#80170F]red guy:[/color] The rite to endorse the demons and banish this disease from our town.", "[color=#5e2d12]brown guy:[/color] It appeared because of you! You're the first who became ill!", "[color=#FEF5F2]you:[/color] Are you all fucking sick?", "[color=#FEF5F2]you:[/color] YOU INVITED ME FOR THIS, YOU CRAZY OLD HAG?", "[color=#FEF5F2]you:[/color] I REGRET NOTHING FOR WHAT I DID, BEAT IT!", "[color=#80170F]red guy:[/color] FUCKING WHORE, WHO ARE YOU TALKING TO?", "[color=#08400F]green guy:[/color] she's mad, we need to begin as soon as possible", "[color=#5e2d12]brown guy:[/color] hold her, I'll take off the skirt", "[color=#FEF5F2]you:[/color] YOU WANTED IT, RIGHT?!" ]
+bbcode = true
+episode_mask = 1
+
+[node name="enter3" type="Node" parent="." index="12"]
+script = ExtResource( 13 )
+text = [ "[color=#80170F]red guy:[/color] She made it here after all, and now we can begin", "[color=#FEF5F2]you:[/color] WHOA!?! WHAT’S GOING ON?", "[color=#FEF5F2]you:[/color] WHY ARE YOU HERE?", "[color=#08400F]green guy:[/color] SHUT UP!!", "[color=#FEF5F2]you:[/color] Come back ... It is quite calm being with you ..", "[color=#5e2d12]brown guy:[/color] To whom she spoke? Is there someone else?", "[color=#08400F]green guy:[/color] All right, restrain her, we shall begin", "[color=#FEF5F2]you:[/color] Begin what?! WHAT'S GOING ON?", "[color=#80170F]red guy:[/color] Hold her tight ...", "[color=#FEF5F2]you:[/color] STOP! STAY AWAY FROM ME!", "[color=#08400F]green guy:[/color] Hey, I can't see anything.", "[color=#5e2d12]brown guy:[/color] Where is she?" ]
+bbcode = true
+episode_mask = 2
+
+[node name="dialog_handler" type="Node" parent="." index="13"]
+script = ExtResource( 14 )
+
+[node name="container" type="YSort" parent="." index="14"]
+
+[node name="enemy2" parent="container" index="0" instance=ExtResource( 15 )]
+position = Vector2( -39.0754, 42.2263 )
+sprite_frames = SubResource( 6 )
+speed = 70.0
+
+[node name="enemy" parent="container" index="1" instance=ExtResource( 15 )]
+sprite_frames = SubResource( 5 )
+speed = 60.0
+[connection signal="before_enter" from="." to="dialog_handler" method="before_enter"]
+[connection signal="entered" from="." to="dialog_handler" method="enter"]
