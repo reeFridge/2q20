@@ -10,4 +10,5 @@ func _ready():
 func on_pressed(i):
 	Global.change_scene(i)
 	get_parent().hide()
+	get_parent().get_node("music").stop()
 	Global.game_state = Global.GameState.Play

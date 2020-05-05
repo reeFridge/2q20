@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/vote.ogg-8513476832ea6a6e3071f6fac3285413.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/vote.ogg"
+dest_files=[ "res://.import/vote.ogg-8513476832ea6a6e3071f6fac3285413.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

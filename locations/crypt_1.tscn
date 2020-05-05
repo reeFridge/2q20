@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/crypt-room-1.png" type="Texture" id=2]
@@ -8,11 +8,12 @@
 [ext_resource path="res://scripts/door_trigger_handler.gd" type="Script" id=6]
 [ext_resource path="res://items/torch.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scripts/common_reply.gd" type="Script" id=8]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 28.1475, 39.7947 )
+[ext_resource path="res://assets/sounds/night.ogg" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 28.1475, 39.7947 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 30, 44 )
 
 [node name="Node2D" instance=ExtResource( 1 )]
@@ -62,7 +63,7 @@ position = Vector2( -231.469, -71.7049 )
 text = "gargoyle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="gargoyle" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 script = ExtResource( 8 )
 text = "Why this statue is weeping?"
 
@@ -83,7 +84,7 @@ episode_masks = [ 0, 1, 2 ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="crypt_lvl2" index="0"]
 position = Vector2( 0, -44 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 script = ExtResource( 6 )
 scene_index = 6
 episode_masks = [ 0, 1, 2 ]
@@ -96,7 +97,7 @@ episode_masks = [ 3 ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="crypt_lab" index="0"]
 position = Vector2( 0, -44 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 script = ExtResource( 6 )
 scene_index = 7
 episode_masks = [ 3 ]
@@ -106,29 +107,34 @@ color = Color( 0.513726, 0.494118, 0.494118, 1 )
 
 [node name="torch" parent="." index="16" instance=ExtResource( 7 )]
 position = Vector2( -762.801, -74.3 )
-frame = 2
+frame = 0
 
 [node name="torch2" parent="." index="17" instance=ExtResource( 7 )]
 position = Vector2( -506.301, -74.3 )
-frame = 2
+frame = 0
 
 [node name="torch3" parent="." index="18" instance=ExtResource( 7 )]
 position = Vector2( -94.9508, -74.3 )
-frame = 2
+frame = 0
 
 [node name="torch4" parent="." index="19" instance=ExtResource( 7 )]
 position = Vector2( 266.049, -74.3 )
-frame = 2
+frame = 0
 
 [node name="torch5" parent="." index="20" instance=ExtResource( 7 )]
 position = Vector2( 519.699, -74.3 )
-frame = 2
+frame = 0
 
 [node name="torch6" parent="." index="21" instance=ExtResource( 7 )]
 position = Vector2( 810.399, -74.3 )
-frame = 2
-[connection signal="before_enter" from="." to="crypt_lab" method="before_enter"]
+frame = 0
+
+[node name="audio" type="AudioStreamPlayer" parent="." index="22"]
+stream = ExtResource( 9 )
+volume_db = -10.0
+autoplay = true
 [connection signal="before_enter" from="." to="crypt_lvl2" method="before_enter"]
+[connection signal="before_enter" from="." to="crypt_lab" method="before_enter"]
 [connection signal="triggered" from="gargoyle" to="gargoyle/CollisionShape2D" method="_on_triggered"]
 [connection signal="triggered" from="crypt_lvl2" to="crypt_lvl2/CollisionShape2D" method="_on_triggered"]
 [connection signal="triggered" from="crypt_lab" to="crypt_lab/CollisionShape2D" method="_on_triggered"]

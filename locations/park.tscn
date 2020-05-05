@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/park.png" type="Texture" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://assets/sprites/ghost-1.png" type="Texture" id=14]
 [ext_resource path="res://assets/sprites/ghost-2.png" type="Texture" id=15]
 [ext_resource path="res://assets/sprites/ghost-3.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/amf.png" type="Texture" id=17]
+[ext_resource path="res://scripts/amf_actions.gd" type="Script" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 87.5952, 8.22055 )
@@ -30,6 +32,8 @@ extents = Vector2( 19.0258, 13.1325 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 87.8027, 27.6242 )
 
+[sub_resource type="RectangleShape2D" id=11]
+
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 48.8704, 17.9191 )
 
@@ -42,7 +46,7 @@ extents = Vector2( 26, 126.357 )
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 10, 84.6306 )
 
-[sub_resource type="SpriteFrames" id=26]
+[sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
@@ -50,7 +54,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=10]
 resource_name = "walk"
 length = 10.0
 tracks/0/type = "value"
@@ -173,6 +177,20 @@ shape = SubResource( 4 )
 [node name="Node" type="Node" parent="bench" index="1"]
 script = ExtResource( 7 )
 text = "Maybe someone left me a gift under the bench?"
+once = true
+
+[node name="item" parent="bench/Node" index="0" instance=ExtResource( 6 )]
+visible = false
+text = "amf"
+inventory_text = "completly heals"
+inventory_texture = ExtResource( 17 )
+
+[node name="Sprite" type="Sprite" parent="bench/Node/item" index="0"]
+texture = ExtResource( 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bench/Node/item" index="1"]
+shape = SubResource( 11 )
+script = ExtResource( 18 )
 
 [node name="moon" parent="." index="13" instance=ExtResource( 6 )]
 position = Vector2( 200.343, -154.743 )
@@ -219,12 +237,12 @@ position = Vector2( 490.609, 84.7085 )
 script = ExtResource( 12 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="ghost" index="0"]
-frames = SubResource( 26 )
+frames = SubResource( 9 )
 frame = 1
 playing = true
 
 [node name="anim" type="AnimationPlayer" parent="ghost" index="1"]
-anims/walk = SubResource( 27 )
+anims/walk = SubResource( 10 )
 [connection signal="before_enter" from="." to="park" method="before_enter"]
 [connection signal="entered" from="." to="ghost" method="enter"]
 [connection signal="triggered" from="bench" to="bench/Node" method="_on_triggered"]

@@ -4,6 +4,8 @@ signal text_queue_free
 
 const START_SCENE_IDX = 0
 
+var vote_sound = preload("res://assets/sounds/vote.ogg")
+
 var text_timer: Timer = null
 
 func _unhandled_key_input(event):
@@ -11,10 +13,18 @@ func _unhandled_key_input(event):
 		if Global.game_state == Global.GameState.Play:
 			Global.game_state = Global.GameState.Pause
 			pause_resume_timer(true)
+			$menu/music.play()
 			$menu.show()
+			var audio = get_parent().current_scene.get_node_or_null("audio")
+			if audio != null:
+				audio.stop()
 		else:
 			pause_resume_timer(false)
 			$menu.hide()
+			$menu/music.stop()
+			var audio = get_parent().current_scene.get_node_or_null("audio")
+			if audio != null:
+				audio.play()
 			Global.game_state = Global.GameState.Play
 
 func _ready():
@@ -32,6 +42,10 @@ func update_mental():
 	$mental.value = Stats.mental
 
 func show_text(text, timeout, bbcode = false):
+	var stream: AudioStreamOGGVorbis = vote_sound
+	stream.loop = false
+	$text_panel/vote.stream = stream
+	$text_panel/vote.play()
 	$overlay.show()
 	remove_text_timer()
 	$text_panel/anim.stop()
@@ -105,6 +119,7 @@ func _on_overlay_gui_input(event):
 
 func _on_start_pressed():
 	$menu.hide()
+	$menu/music.stop()
 	$menu/buttons/start.text = "continue"
 	if Global.game_state == Global.GameState.None:
 		Global.change_scene(START_SCENE_IDX)

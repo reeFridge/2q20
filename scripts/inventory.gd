@@ -6,6 +6,8 @@ onready var desc_text = $desc/MarginContainer/VBoxContainer/desc
 var items = []
 var icons = []
 
+var take_sound = preload("res://assets/sounds/flap.ogg")
+
 func update_active_state(item, state):
 	var item_idx = items.find(item)
 	if item_idx != -1:
@@ -13,6 +15,10 @@ func update_active_state(item, state):
 		icon.get_node("container").visible = state
 
 func add_item(item):
+	var stream = take_sound
+	stream.loop = false
+	$audio.stream = stream
+	$audio.play()
 	items.push_back(item)
 	var icon = preload("res://ui/inventory_item.tscn").instance()
 	icon.connect("gui_input", self, "item_icon_input", [item])

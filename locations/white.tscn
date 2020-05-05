@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/white room.png" type="Texture" id=2]
 [ext_resource path="res://scripts/change_skin.gd" type="Script" id=3]
+[ext_resource path="res://assets/sounds/ends.ogg" type="AudioStream" id=4]
 
 [node name="Node2D" instance=ExtResource( 1 )]
 fade = true
@@ -33,4 +34,9 @@ texture = ExtResource( 2 )
 
 [node name="enter" type="Node" parent="." index="7"]
 script = ExtResource( 3 )
+
+[node name="audio" type="AudioStreamPlayer" parent="." index="8"]
+stream = ExtResource( 4 )
+volume_db = -5.0
+autoplay = true
 [connection signal="before_enter" from="." to="enter" method="before_enter"]

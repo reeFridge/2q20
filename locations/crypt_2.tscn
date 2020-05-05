@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://locations/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/crypt-room-2.png" type="Texture" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://scripts/on_enter.gd" type="Script" id=13]
 [ext_resource path="res://scripts/dialog_handler.gd" type="Script" id=14]
 [ext_resource path="res://player/enemy.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/sounds/night.ogg" type="AudioStream" id=16]
+[ext_resource path="res://assets/sounds/kick.ogg" type="AudioStream" id=17]
 
 [sub_resource type="Animation" id=1]
 resource_name = "blink"
@@ -41,7 +43,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 10 ) ],
 "loop": true,
@@ -54,7 +56,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 5 ) ],
 "loop": true,
@@ -132,11 +134,18 @@ script = ExtResource( 14 )
 
 [node name="enemy2" parent="container" index="0" instance=ExtResource( 15 )]
 position = Vector2( -39.0754, 42.2263 )
-sprite_frames = SubResource( 6 )
+sprite_frames = SubResource( 3 )
 speed = 70.0
 
 [node name="enemy" parent="container" index="1" instance=ExtResource( 15 )]
-sprite_frames = SubResource( 5 )
+sprite_frames = SubResource( 4 )
 speed = 60.0
+
+[node name="audio" type="AudioStreamPlayer" parent="." index="15"]
+stream = ExtResource( 16 )
+autoplay = true
+
+[node name="change_ep" type="AudioStreamPlayer" parent="." index="16"]
+stream = ExtResource( 17 )
 [connection signal="before_enter" from="." to="dialog_handler" method="before_enter"]
 [connection signal="entered" from="." to="dialog_handler" method="enter"]

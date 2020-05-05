@@ -27,6 +27,7 @@ func _physics_process(delta):
 	$sprite.set_flip_h(target.x < 0)
 	var result = move_and_collide(target * speed * delta)
 	if result != null && result.collider == Global.get_player():
+		Global.main.current_scene.get_node("change_ep").play()
 		call_deferred("reset")
 		Global.call_deferred("change_scene", 0)
 		match Stats.episode:

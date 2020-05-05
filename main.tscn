@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://shaders/transition.shader" type="Shader" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/sprites/menu_bg.png" type="Texture" id=13]
 [ext_resource path="res://ui/menu_button.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scripts/scene_changer.gd" type="Script" id=15]
+[ext_resource path="res://assets/sounds/ends.ogg" type="AudioStream" id=16]
 
 [sub_resource type="Animation" id=1]
 tracks/0/type = "value"
@@ -132,8 +133,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="vote" type="AudioStreamPlayer" parent="ui/text_panel"]
+volume_db = -30.0
+
 [node name="inventory" parent="ui" instance=ExtResource( 10 )]
 mouse_filter = 2
+
+[node name="audio" type="AudioStreamPlayer" parent="ui/inventory"]
+pitch_scale = 1.5
 
 [node name="mental" type="TextureProgress" parent="ui"]
 margin_left = 14.0
@@ -324,6 +331,11 @@ script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="music" type="AudioStreamPlayer" parent="ui/menu"]
+stream = ExtResource( 16 )
+volume_db = -10.0
+autoplay = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
 [connection signal="gui_input" from="ui/overlay" to="ui" method="_on_overlay_gui_input"]
 [connection signal="pressed" from="ui/menu/buttons/start" to="ui" method="_on_start_pressed"]
