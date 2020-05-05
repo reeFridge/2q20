@@ -19,7 +19,8 @@ var scenes = [
 	preload("res://locations/crypt_2.tscn").instance(),		#6
 	preload("res://locations/lab.tscn").instance(),			#7
 	preload("res://locations/black.tscn").instance(),		#8
-	preload("res://locations/forest.tscn").instance()		#9
+	preload("res://locations/forest.tscn").instance(),		#9
+	preload("res://locations/white.tscn").instance()		#10
 ]
 
 onready var main = get_tree().get_root().get_node("main")
