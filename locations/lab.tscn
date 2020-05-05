@@ -16,6 +16,8 @@
 [ext_resource path="res://assets/sprites/bubble-6.png" type="Texture" id=14]
 [ext_resource path="res://assets/sprites/bubble-5.png" type="Texture" id=15]
 
+[sub_resource type="RectangleShape2D" id=13]
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 104.157, 18.5758 )
 
@@ -52,15 +54,13 @@ extents = Vector2( 12.6795, 10 )
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 91.0078, 11.9747 )
 
-[sub_resource type="RectangleShape2D" id=16]
-
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 42.4174, 26.1725 )
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 111.246, 61.2577 )
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 12.1919, 10 )
 
 [node name="Node2D" instance=ExtResource( 1 )]
@@ -89,7 +89,55 @@ limit_bottom = 166
 [node name="bg" type="Sprite" parent="." index="6"]
 texture = ExtResource( 2 )
 
-[node name="container" type="YSort" parent="." index="7"]
+[node name="Node2D" type="Node2D" parent="." index="7"]
+
+[node name="bubble-8" type="Sprite" parent="Node2D" index="0"]
+position = Vector2( 159.104, -35.6821 )
+texture = ExtResource( 10 )
+
+[node name="bubble-9" type="Sprite" parent="Node2D" index="1"]
+position = Vector2( 177.476, -78.3705 )
+texture = ExtResource( 9 )
+
+[node name="bubble-7" type="Sprite" parent="Node2D" index="2"]
+position = Vector2( 89.3973, -81.0723 )
+texture = ExtResource( 8 )
+
+[node name="bubble-6" type="Sprite" parent="Node2D" index="3"]
+position = Vector2( 126.682, -58.9176 )
+texture = ExtResource( 14 )
+
+[node name="bubble-5" type="Sprite" parent="Node2D" index="4"]
+position = Vector2( 46.7089, -34.6013 )
+texture = ExtResource( 15 )
+
+[node name="bubble-3" type="Sprite" parent="Node2D" index="5"]
+position = Vector2( 53.5157, -95.7837 )
+texture = ExtResource( 13 )
+
+[node name="bubble-4" type="Sprite" parent="Node2D" index="6"]
+position = Vector2( 107.77, -32.9803 )
+texture = ExtResource( 12 )
+
+[node name="bubble-2" type="Sprite" parent="Node2D" index="7"]
+position = Vector2( 27.5518, -67.4434 )
+texture = ExtResource( 11 )
+
+[node name="syringe" parent="." index="8" instance=ExtResource( 3 )]
+position = Vector2( -54.3631, 3.51662 )
+text = "syringe"
+inventory_text = "use me!"
+distance_to_activate = 100
+inventory_texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="syringe" index="0"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="syringe" index="1"]
+shape = SubResource( 13 )
+script = ExtResource( 7 )
+
+[node name="container" type="YSort" parent="." index="9"]
 
 [node name="lab-table" type="Sprite" parent="container" index="0"]
 position = Vector2( 115.554, 134.159 )
@@ -103,7 +151,7 @@ position = Vector2( 0, -13.9318 )
 position = Vector2( 0, 22.5563 )
 shape = SubResource( 1 )
 
-[node name="door" parent="." index="8" instance=ExtResource( 3 )]
+[node name="door" parent="." index="10" instance=ExtResource( 3 )]
 position = Vector2( -314.953, -42.9104 )
 text = "metal door"
 
@@ -111,33 +159,33 @@ text = "metal door"
 position = Vector2( 0, 4.91095 )
 shape = SubResource( 2 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="11"]
 position = Vector2( -93.5423, 51.7468 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
 shape = SubResource( 3 )
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." index="10"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="12"]
 position = Vector2( 340.998, 52.4102 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="0"]
 shape = SubResource( 4 )
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="." index="11"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="13"]
 position = Vector2( -364.218, 124.06 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" index="0"]
 rotation = 1.5708
 shape = SubResource( 5 )
 
-[node name="test tube" parent="." index="12" instance=ExtResource( 3 )]
+[node name="test tube" parent="." index="14" instance=ExtResource( 3 )]
 position = Vector2( 314.333, -6.94432 )
 text = "test tube"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="test tube" index="0"]
 shape = SubResource( 6 )
 
-[node name="bottle with eyes" parent="." index="13" instance=ExtResource( 3 )]
+[node name="bottle with eyes" parent="." index="15" instance=ExtResource( 3 )]
 position = Vector2( 274.454, -8.70717 )
 text = "bottle with eyes"
 
@@ -148,14 +196,14 @@ shape = SubResource( 7 )
 script = ExtResource( 5 )
 text = "they.. they said.. they didn't want to be friends.."
 
-[node name="figurines" parent="." index="14" instance=ExtResource( 3 )]
+[node name="figurines" parent="." index="16" instance=ExtResource( 3 )]
 position = Vector2( -170.589, -81.2209 )
 text = "figurines"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="figurines" index="0"]
 shape = SubResource( 8 )
 
-[node name="weapons" parent="." index="15" instance=ExtResource( 3 )]
+[node name="weapons" parent="." index="17" instance=ExtResource( 3 )]
 position = Vector2( -115.586, 1.10751 )
 text = "weapons"
 
@@ -166,21 +214,21 @@ shape = SubResource( 9 )
 script = ExtResource( 5 )
 text = "Ha ha."
 
-[node name="noose" parent="." index="16" instance=ExtResource( 3 )]
+[node name="noose" parent="." index="18" instance=ExtResource( 3 )]
 position = Vector2( -71.6179, -125.587 )
 text = "noose"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="noose" index="0"]
 shape = SubResource( 10 )
 
-[node name="knife" parent="." index="17" instance=ExtResource( 3 )]
+[node name="knife" parent="." index="19" instance=ExtResource( 3 )]
 position = Vector2( 410.405, -1.09224 )
 text = "knife"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="knife" index="0"]
 shape = SubResource( 11 )
 
-[node name="dead body" parent="." index="18" instance=ExtResource( 3 )]
+[node name="dead body" parent="." index="20" instance=ExtResource( 3 )]
 position = Vector2( 118.098, 90.2273 )
 text = "dead body"
 
@@ -191,82 +239,36 @@ shape = SubResource( 12 )
 script = ExtResource( 5 )
 text = " I was wondering what’s inside.. he started first.."
 
-[node name="syringe" parent="." index="19" instance=ExtResource( 3 )]
-position = Vector2( -54.3631, 3.51662 )
-text = "syringe"
-inventory_text = "use me!"
-distance_to_activate = 100
-inventory_texture = ExtResource( 6 )
-
-[node name="Sprite" type="Sprite" parent="syringe" index="0"]
-texture = ExtResource( 6 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="syringe" index="1"]
-shape = SubResource( 16 )
-script = ExtResource( 7 )
-
-[node name="basin" parent="." index="20" instance=ExtResource( 3 )]
+[node name="basin" parent="." index="21" instance=ExtResource( 3 )]
 position = Vector2( -363.98, 131.212 )
 text = "basin"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="basin" index="0"]
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="Node" type="Node" parent="basin" index="1"]
 script = ExtResource( 5 )
 text = "Acid is so entertaining.. People just get lost in it.."
 
-[node name="aquarium" parent="." index="21" instance=ExtResource( 3 )]
+[node name="aquarium" parent="." index="22" instance=ExtResource( 3 )]
 visible = false
 position = Vector2( 110.791, -55.0638 )
 text = "aquarium"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="aquarium" index="0"]
-shape = SubResource( 14 )
+shape = SubResource( 15 )
 
 [node name="bubles" type="Node2D" parent="aquarium" index="1"]
 position = Vector2( -110.791, 55.0638 )
 
-[node name="hand" parent="." index="22" instance=ExtResource( 3 )]
+[node name="hand" parent="." index="23" instance=ExtResource( 3 )]
 position = Vector2( 373.342, -2.55525 )
 text = "hand"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hand" index="0"]
-shape = SubResource( 15 )
-
-[node name="bubble-2" type="Sprite" parent="." index="23"]
-position = Vector2( 27.5518, -67.4434 )
-texture = ExtResource( 11 )
-
-[node name="bubble-3" type="Sprite" parent="." index="24"]
-position = Vector2( 53.5157, -95.7837 )
-texture = ExtResource( 13 )
-
-[node name="bubble-4" type="Sprite" parent="." index="25"]
-position = Vector2( 107.77, -32.9803 )
-texture = ExtResource( 12 )
-
-[node name="bubble-5" type="Sprite" parent="." index="26"]
-position = Vector2( 46.7089, -34.6013 )
-texture = ExtResource( 15 )
-
-[node name="bubble-6" type="Sprite" parent="." index="27"]
-position = Vector2( 126.682, -58.9176 )
-texture = ExtResource( 14 )
-
-[node name="bubble-7" type="Sprite" parent="." index="28"]
-position = Vector2( 89.3973, -81.0723 )
-texture = ExtResource( 8 )
-
-[node name="bubble-8" type="Sprite" parent="." index="29"]
-position = Vector2( 159.104, -35.6821 )
-texture = ExtResource( 10 )
-
-[node name="bubble-9" type="Sprite" parent="." index="30"]
-position = Vector2( 177.476, -78.3705 )
-texture = ExtResource( 9 )
+shape = SubResource( 16 )
+[connection signal="triggered" from="syringe" to="syringe/CollisionShape2D" method="_on_triggered"]
 [connection signal="triggered" from="bottle with eyes" to="bottle with eyes/Node" method="_on_triggered"]
 [connection signal="triggered" from="weapons" to="weapons/Node" method="_on_triggered"]
 [connection signal="triggered" from="dead body" to="dead body/Node" method="_on_triggered"]
-[connection signal="triggered" from="syringe" to="syringe/CollisionShape2D" method="_on_triggered"]
 [connection signal="triggered" from="basin" to="basin/Node" method="_on_triggered"]

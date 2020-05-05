@@ -325,6 +325,7 @@ text = "special for
 #AdvJam2020"
 
 [node name="scenes" type="HBoxContainer" parent="ui/menu"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 15 )
